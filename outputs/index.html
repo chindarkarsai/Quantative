@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#123c35">
+  <title>Quantivate - Daily Maths & IBPS Quiz</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <button class="brand" id="homeButton" type="button" aria-label="Go to dashboard">
+        <span class="brand-mark">Q</span>
+        <span>
+          <strong>Quantivate</strong>
+          <small>Daily practice, real progress</small>
+        </span>
+      </button>
+      <nav class="top-actions" aria-label="Main navigation">
+        <button class="icon-button" id="historyButton" type="button">
+          <span aria-hidden="true">&#8635;</span>
+          <span>History</span>
+          <span class="history-badge" id="historyBadge">0</span>
+        </button>
+      </nav>
+    </header>
+
+    <main id="app" tabindex="-1"></main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <dialog class="history-dialog" id="historyDialog">
+    <div class="dialog-head">
+      <div>
+        <span class="eyebrow">Your journey</span>
+        <h2>Quiz history</h2>
+      </div>
+      <button class="close-button" id="closeHistoryButton" type="button" aria-label="Close history">&times;</button>
+    </div>
+    <div id="historyList" class="history-list"></div>
+    <div class="dialog-footer">
+      <button class="text-button danger" id="clearHistoryButton" type="button">Clear history</button>
+      <button class="secondary-button" id="doneHistoryButton" type="button">Done</button>
+    </div>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
