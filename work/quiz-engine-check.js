@@ -45,7 +45,7 @@ vm.runInContext(fs.readFileSync("outputs/app.js", "utf8"), context);
 const topics = [
   "mixed", "addition", "subtraction", "multiplication", "division",
   "bodmas", "fractions", "decimals", "squares", "squareRoots",
-  "cubes", "cubeRoots", "powers", "banking", "simplification",
+  "cubes", "cubeRoots", "powers", "banking", "pdfPattern", "simplification",
   "approximation", "quadratic", "ratioProportion", "percentage",
   "profitLoss", "interest", "averageAge", "mixtureAlligation",
   "timeWork", "speedDistance", "partnership", "probability",

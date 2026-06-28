@@ -1,7 +1,9 @@
 const STORAGE_KEYS = {
   history: "quantivate-history-v1",
   active: "quantivate-active-v1",
-  recent: "quantivate-recent-v2"
+  recent: "quantivate-recent-v2",
+  users: "quantivate-users-v1",
+  currentUser: "quantivate-current-user-v1"
 };
 
 const TOPICS = {
@@ -19,6 +21,7 @@ const TOPICS = {
   cubeRoots: "Cube Roots",
   powers: "Power Comparison",
   banking: "IBPS Clerk Mixed Quiz",
+  pdfPattern: "PDF Pattern Drill",
   simplification: "Simplification",
   approximation: "Approximation",
   quadratic: "Quadratic Equations",
@@ -52,7 +55,7 @@ const CORE_TOPIC_KEYS = [
 ];
 
 const IBPS_TOPIC_KEYS = [
-  "banking", "simplification", "approximation", "quadratic", "ratioProportion",
+  "banking", "pdfPattern", "simplification", "approximation", "quadratic", "ratioProportion",
   "percentage", "profitLoss", "interest", "averageAge", "mixtureAlligation",
   "timeWork", "speedDistance", "partnership", "probability",
   "permutationCombination", "boatStream", "pipesCisterns", "mensuration",
@@ -65,11 +68,16 @@ const historyDialog = document.querySelector("#historyDialog");
 const historyList = document.querySelector("#historyList");
 const historyBadge = document.querySelector("#historyBadge");
 const toast = document.querySelector("#toast");
+const profileDialog = document.querySelector("#profileDialog");
+const profileButtonText = document.querySelector("#profileButtonText");
+const calculatorPanel = document.querySelector("#calculatorPanel");
+const calculatorDisplay = document.querySelector("#calculatorDisplay");
 
 let screen = "dashboard";
 let activeQuiz = load(STORAGE_KEYS.active, null);
 let currentQuestion = activeQuiz?.currentQuestion || 0;
 let timerId = null;
+let currentUserId = load(STORAGE_KEYS.currentUser, null);
 let selectedSetup = {
   mode: "quick",
   topic: "mixed",
@@ -88,6 +96,88 @@ function load(key, fallback) {
 
 function save(key, value) {
   localStorage.setItem(key, JSON.stringify(value));
+}
+
+function getUsers() {
+  return load(STORAGE_KEYS.users, []);
+}
+
+function saveUsers(users) {
+  save(STORAGE_KEYS.users, users);
+}
+
+function getCurrentUser() {
+  return getUsers().find((user) => user.id === currentUserId) || null;
+}
+
+function saveCurrentUser(user) {
+  const users = getUsers();
+  const existingIndex = users.findIndex((item) => item.id === user.id);
+  if (existingIndex >= 0) users[existingIndex] = user;
+  else users.push(user);
+  saveUsers(users);
+  currentUserId = user.id;
+  save(STORAGE_KEYS.currentUser, user.id);
+  updateProfileButton();
+}
+
+function logoutUser() {
+  currentUserId = null;
+  localStorage.removeItem(STORAGE_KEYS.currentUser);
+  updateProfileButton();
+  renderDashboard();
+}
+
+function updateProfileButton() {
+  if (!profileButtonText) return;
+  const user = getCurrentUser();
+  profileButtonText.textContent = user ? user.name : "Login";
+}
+
+function daysUntil(dateString) {
+  if (!dateString) return null;
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const examDate = new Date(`${dateString}T00:00:00`);
+  if (Number.isNaN(examDate.getTime())) return null;
+  return Math.ceil((examDate - today) / 86400000);
+}
+
+function userStats(user) {
+  const activities = user?.activities || [];
+  const completed = activities.filter((item) => item.status === "completed");
+  const totalQuestions = completed.reduce((sum, item) => sum + item.count, 0);
+  const totalSeconds = completed.reduce((sum, item) => sum + item.elapsedSeconds, 0);
+  const averageScore = completed.length
+    ? Math.round(completed.reduce((sum, item) => sum + item.percent, 0) / completed.length)
+    : 0;
+  return {
+    completed: completed.length,
+    totalQuestions,
+    averageScore,
+    averageSeconds: totalQuestions ? Math.round(totalSeconds / totalQuestions) : 0
+  };
+}
+
+function recordUserActivity(result) {
+  const user = getCurrentUser();
+  if (!user) return;
+  const activity = {
+    id: result.id,
+    mode: result.mode,
+    topic: result.topic,
+    difficulty: result.difficulty,
+    count: result.count,
+    correct: result.correct,
+    percent: result.percent,
+    elapsedSeconds: result.elapsedSeconds,
+    averageSeconds: result.averageSeconds,
+    status: result.status,
+    completedAt: result.completedAt
+  };
+  user.activities = [activity, ...(user.activities || [])].slice(0, 120);
+  user.lastActiveAt = Date.now();
+  saveCurrentUser(user);
 }
 
 function randomInt(min, max) {
@@ -151,7 +241,7 @@ function makeTextOptions(answer, distractors) {
   return shuffle([...options].slice(0, 4));
 }
 
-function createQuestion(text, answer, category, explanation, options = null) {
+function createQuestion(text, answer, category, explanation, options = null, visual = null) {
   const formattedAnswer = formatNumber(answer);
   return {
     id: `${Date.now()}-${Math.random().toString(36).slice(2, 10)}`,
@@ -160,8 +250,13 @@ function createQuestion(text, answer, category, explanation, options = null) {
     answer: formattedAnswer,
     options: options || makeNumberOptions(answer),
     category,
-    explanation
+    explanation,
+    visual
   };
+}
+
+function barVisual(title, labels, values, unit = "") {
+  return { type: "bar", title, labels, values, unit };
 }
 
 function fractionValue(numerator, denominator) {
@@ -777,14 +872,15 @@ function tabularDIQuestion(difficulty) {
   const labels = ["North", "South", "East", "West"];
   const values = labels.map(() => randomInt(4, 15 + level * 8) * 10);
   const data = labels.map((label, index) => `${label}: ${values[index]}`).join(", ");
+  const visual = barVisual("Loans approved", labels, values, "loans");
   const type = pick(["total", "average", "difference"]);
   if (type === "total") {
-    return createQuestion(`Table - Loans approved: ${data}. Find the total approved.`, values.reduce((sum, value) => sum + value, 0), "Tabular DI", "Add the four table entries, pairing values that make round hundreds.");
+    return createQuestion(`Table - Loans approved: ${data}. Find the total approved.`, values.reduce((sum, value) => sum + value, 0), "Tabular DI", "Add the four table entries, pairing values that make round hundreds.", null, visual);
   }
   if (type === "average") {
-    return createQuestion(`Table - Loans approved: ${data}. Find the average per region.`, values.reduce((sum, value) => sum + value, 0) / values.length, "Tabular DI", "Find the total of all entries and divide by the number of regions.");
+    return createQuestion(`Table - Loans approved: ${data}. Find the average per region.`, values.reduce((sum, value) => sum + value, 0) / values.length, "Tabular DI", "Find the total of all entries and divide by the number of regions.", null, visual);
   }
-  return createQuestion(`Table - Loans approved: ${data}. Find the difference between the highest and lowest values.`, Math.max(...values) - Math.min(...values), "Tabular DI", "Identify the largest and smallest entries before subtracting.");
+  return createQuestion(`Table - Loans approved: ${data}. Find the difference between the highest and lowest values.`, Math.max(...values) - Math.min(...values), "Tabular DI", "Identify the largest and smallest entries before subtracting.", null, visual);
 }
 
 function lineGraphDIQuestion(difficulty) {
@@ -797,7 +893,7 @@ function lineGraphDIQuestion(difficulty) {
   const data = years.map((year, index) => `${year}: ${values[index]}`).join(", ");
   const from = randomInt(0, 3);
   const to = from + 1;
-  return createQuestion(`Line graph data - Deposits (crore): ${data}. What is the change from ${years[from]} to ${years[to]}?`, values[to] - values[from], "Line Graph DI", "Read the two points from the trend and subtract the earlier value from the later value.");
+  return createQuestion(`Line graph data - Deposits (crore): ${data}. What is the change from ${years[from]} to ${years[to]}?`, values[to] - values[from], "Line Graph DI", "Read the two points from the trend and subtract the earlier value from the later value.", null, barVisual("Deposits by year", years.map(String), values, "cr"));
 }
 
 function barGraphDIQuestion(difficulty) {
@@ -807,7 +903,7 @@ function barGraphDIQuestion(difficulty) {
   const data = banks.map((bank, index) => `Bank ${bank}: ${values[index]}`).join(", ");
   const first = randomInt(0, 2);
   const second = first + 1;
-  return createQuestion(`Bar graph data - Accounts opened: ${data}. Find the difference between Bank ${banks[second]} and Bank ${banks[first]}.`, Math.abs(values[second] - values[first]), "Bar Graph DI", "Compare the two bar values and subtract the smaller value from the larger value.");
+  return createQuestion(`Bar graph data - Accounts opened: ${data}. Find the difference between Bank ${banks[second]} and Bank ${banks[first]}.`, Math.abs(values[second] - values[first]), "Bar Graph DI", "Compare the two bar values and subtract the smaller value from the larger value.", null, barVisual("Accounts opened", banks.map((bank) => `Bank ${bank}`), values, "accounts"));
 }
 
 function caseletDIQuestion(difficulty) {
@@ -817,14 +913,15 @@ function caseletDIQuestion(difficulty) {
   const branchC = randomInt(8, 18 + level * 8) * 20;
   const type = pick(["total", "percentage", "average"]);
   const caselet = `A bank opened ${branchA} accounts at Branch A, ${branchB} at Branch B, and ${branchC} at Branch C during a campaign.`;
+  const visual = barVisual("Campaign accounts", ["Branch A", "Branch B", "Branch C"], [branchA, branchB, branchC], "accounts");
 
   if (type === "total") {
-    return createQuestion(`${caselet} How many accounts were opened in total?`, branchA + branchB + branchC, "Caselet DI", "Translate the paragraph into three values and add them.");
+    return createQuestion(`${caselet} How many accounts were opened in total?`, branchA + branchB + branchC, "Caselet DI", "Translate the paragraph into three values and add them.", null, visual);
   }
   if (type === "percentage") {
-    return createQuestion(`${caselet} Branch B's accounts are what percent of Branch A's accounts?`, branchB / branchA * 100, "Caselet DI", "Use required percentage = Branch B / Branch A x 100.");
+    return createQuestion(`${caselet} Branch B's accounts are what percent of Branch A's accounts?`, branchB / branchA * 100, "Caselet DI", "Use required percentage = Branch B / Branch A x 100.", null, visual);
   }
-  return createQuestion(`${caselet} Find the average number of accounts opened per branch.`, (branchA + branchB + branchC) / 3, "Caselet DI", "Add all values stated in the caselet and divide by the number of branches.");
+  return createQuestion(`${caselet} Find the average number of accounts opened per branch.`, (branchA + branchB + branchC) / 3, "Caselet DI", "Add all values stated in the caselet and divide by the number of branches.", null, visual);
 }
 
 function arithmeticDIQuestion(difficulty) {
@@ -833,14 +930,15 @@ function arithmeticDIQuestion(difficulty) {
   const customers = products.map(() => randomInt(5, 14 + level * 6) * 20);
   const deposits = products.map((_, index) => customers[index] * randomInt(2, 6 + level * 2) * 1000);
   const data = products.map((product, index) => `${product}: ${customers[index]} customers, Rs ${deposits[index]} deposited`).join("; ");
+  const visual = barVisual("Customers by product", products, customers, "customers");
   const type = pick(["perCustomer", "combined", "ratio"]);
 
   if (type === "perCustomer") {
     const index = randomInt(0, products.length - 1);
-    return createQuestion(`Arithmetic DI - ${data}. Find the average deposit per ${products[index]} customer.`, deposits[index] / customers[index], "Arithmetic DI", "Divide the total deposit for the selected product by its customer count.");
+    return createQuestion(`Arithmetic DI - ${data}. Find the average deposit per ${products[index]} customer.`, deposits[index] / customers[index], "Arithmetic DI", "Divide the total deposit for the selected product by its customer count.", null, visual);
   }
   if (type === "combined") {
-    return createQuestion(`Arithmetic DI - ${data}. Find the total deposits across all products.`, deposits.reduce((sum, value) => sum + value, 0), "Arithmetic DI", "Extract the three deposit values and add them, ignoring the customer counts.");
+    return createQuestion(`Arithmetic DI - ${data}. Find the total deposits across all products.`, deposits.reduce((sum, value) => sum + value, 0), "Arithmetic DI", "Extract the three deposit values and add them, ignoring the customer counts.", null, barVisual("Deposits by product", products, deposits, "Rs"));
   }
   const common = gcd(customers[0], customers[1]);
   const answer = `${customers[0] / common}:${customers[1] / common}`;
@@ -849,7 +947,8 @@ function arithmeticDIQuestion(difficulty) {
     answer,
     "Arithmetic DI",
     "Form the ratio from the two customer counts and reduce by their greatest common divisor.",
-    makeTextOptions(answer, [`${customers[1] / common}:${customers[0] / common}`, "1:1", "2:3", "3:2"])
+    makeTextOptions(answer, [`${customers[1] / common}:${customers[0] / common}`, "1:1", "2:3", "3:2"]),
+    visual
   );
 }
 
@@ -860,12 +959,13 @@ function missingDIQuestion(difficulty) {
   const missingIndex = randomInt(0, values.length - 1);
   const total = values.reduce((sum, value) => sum + value, 0);
   const visible = labels.map((label, index) => `Branch ${label}: ${index === missingIndex ? "?" : values[index]}`).join(", ");
+  const visual = barVisual("Accounts opened", labels.map((label, index) => `Branch ${label}${index === missingIndex ? " (?)" : ""}`), values.map((value, index) => index === missingIndex ? 0 : value), "accounts");
 
   if (Math.random() > 0.5) {
-    return createQuestion(`Missing DI - Accounts opened: ${visible}. The total is ${total}. Find the missing value.`, values[missingIndex], "Missing DI", "Subtract the sum of all visible entries from the given total.");
+    return createQuestion(`Missing DI - Accounts opened: ${visible}. The total is ${total}. Find the missing value.`, values[missingIndex], "Missing DI", "Subtract the sum of all visible entries from the given total.", null, visual);
   }
   const average = total / values.length;
-  return createQuestion(`Missing DI - Accounts opened: ${visible}. The average for four branches is ${formatNumber(average)}. Find the missing value.`, values[missingIndex], "Missing DI", "Multiply the average by the number of entries, then subtract the visible values.");
+  return createQuestion(`Missing DI - Accounts opened: ${visible}. The average for four branches is ${formatNumber(average)}. Find the missing value.`, values[missingIndex], "Missing DI", "Multiply the average by the number of entries, then subtract the visible values.", null, visual);
 }
 
 function mixedDIQuestion(difficulty) {
@@ -883,8 +983,158 @@ function dataAnalysisQuestion(difficulty) {
   return mixedDIQuestion(difficulty);
 }
 
+function pdfIncomePatternQuestion(difficulty) {
+  const level = difficultyIndex(difficulty);
+  const income = randomInt(5, 18 + level * 12) * 1000;
+  const rentPercent = pick([10, 15, 20, 25, 30]);
+  const emiPercent = pick([20, 25, 30, 40]);
+  const fdPart = randomInt(2, 5);
+  const bankPart = randomInt(5, 9);
+  const afterRent = income * (100 - rentPercent) / 100;
+  const emi = afterRent * emiPercent / 100;
+  const remaining = afterRent - emi;
+  const fd = remaining * fdPart / (fdPart + bankPart);
+  const answer = Math.round(fd);
+  return createQuestion(
+    `PDF Pattern - A person earns Rs ${income}. ${rentPercent}% is spent on rent. From the remaining amount, ${emiPercent}% is spent on EMI and the rest is invested in FD and bank in the ratio ${fdPart}:${bankPart}. Find the FD amount.`,
+    answer,
+    "PDF Pattern Drill",
+    "Work stepwise: remove rent, remove EMI from the balance, then split the remaining amount in the given ratio."
+  );
+}
+
+function pdfWorkVariableQuestion(difficulty) {
+  const level = difficultyIndex(difficulty);
+  const daysA = pick([8, 10, 12, 15]);
+  const daysB = pick([12, 16, 20, 24, 30].slice(0, 3 + level));
+  const daysC = pick([10, 15, 20, 25, 30].slice(0, 3 + level));
+  const workDays = randomInt(2, Math.min(6, daysA - 2));
+  const totalWork = daysA * daysB * daysC / gcd(gcd(daysA, daysB), daysC);
+  const done = totalWork / daysA * workDays + totalWork / daysB * workDays;
+  const remaining = totalWork - done;
+  const answer = remaining / (totalWork / daysC);
+  return createQuestion(
+    `PDF Pattern - A can finish a work in ${daysA} days, B in ${daysB} days and C in ${daysC} days. A and B work together for ${workDays} days, then C completes the remaining work. How many days does C take?`,
+    answer,
+    "PDF Pattern Drill",
+    "Use one-day work rates. Work done = rate x days; remaining work divided by C's rate gives the answer."
+  );
+}
+
+function pdfQuadraticComparisonQuestion(difficulty) {
+  const level = difficultyIndex(difficulty);
+  const x1 = randomInt(1, 6 + level * 3);
+  const x2 = x1 + randomInt(1, 4);
+  const y1 = randomInt(1, 6 + level * 3);
+  const y2 = y1 + randomInt(1, 4);
+  const xMiddle = -(x1 + x2);
+  const yMiddle = -(y1 + y2);
+  const xConstant = x1 * x2;
+  const yConstant = y1 * y2;
+  const xMin = Math.min(x1, x2);
+  const yMax = Math.max(y1, y2);
+  const answer = xMin > yMax ? "x > y" : Math.max(x1, x2) < Math.min(y1, y2) ? "x < y" : "No definite relation";
+  return createQuestion(
+    `PDF Pattern - Compare x and y. I: x^2 ${xMiddle >= 0 ? "+ " + xMiddle : "- " + Math.abs(xMiddle)}x + ${xConstant} = 0. II: y^2 ${yMiddle >= 0 ? "+ " + yMiddle : "- " + Math.abs(yMiddle)}y + ${yConstant} = 0.`,
+    answer,
+    "PDF Pattern Drill",
+    "Factor both quadratics, list the possible x and y values, then compare the sets.",
+    shuffle(["x > y", "x < y", "x = y", "No definite relation"])
+  );
+}
+
+function pdfProfitDiscountQuestion(difficulty) {
+  const level = difficultyIndex(difficulty);
+  const cost = randomInt(5, 20 + level * 12) * 100;
+  const markup = pick([20, 25, 30, 40, 50]);
+  const discount = pick([10, 15, 20, 25]);
+  const marked = cost * (100 + markup) / 100;
+  const selling = marked * (100 - discount) / 100;
+  const profitPercent = (selling - cost) / cost * 100;
+  return createQuestion(
+    `PDF Pattern - An article costing Rs ${cost} is marked ${markup}% above cost and sold after ${discount}% discount. Find the profit percentage.`,
+    profitPercent,
+    "PDF Pattern Drill",
+    "Find marked price from cost, apply discount to get selling price, then compare selling price with cost."
+  );
+}
+
+function pdfSeriesFollowupQuestion(difficulty) {
+  const level = difficultyIndex(difficulty);
+  const start = randomInt(3, 30);
+  const multiplier = pick([2, 3]);
+  const add = randomInt(1, 6 + level * 3);
+  const values = [start];
+  for (let index = 1; index < 6; index += 1) {
+    values.push(values[index - 1] * multiplier + add * index);
+  }
+  const askIndex = randomInt(3, 5);
+  return createQuestion(
+    `PDF Pattern - Series: ${values.slice(0, askIndex).join(", ")}, A, B. If the same pattern continues, find A.`,
+    values[askIndex],
+    "PDF Pattern Drill",
+    `Each term is previous x ${multiplier} plus a growing add-on: ${add}, ${add * 2}, ${add * 3}, and so on.`
+  );
+}
+
+function pdfDISetQuestion(difficulty) {
+  const level = difficultyIndex(difficulty);
+  const teachers = ["A", "B", "C", "D"];
+  const physics = teachers.map(() => randomInt(3, 8 + level * 3) * 10);
+  const chemistry = teachers.map(() => randomInt(3, 8 + level * 3) * 10);
+  const totals = teachers.map((_, index) => physics[index] + chemistry[index]);
+  const data = teachers.map((teacher, index) => `${teacher}: Physics ${physics[index]}, Chemistry ${chemistry[index]}`).join("; ");
+  const type = pick(["percentage", "ratio", "difference"]);
+  const visual = barVisual("Total lectures by teacher", teachers, totals, "lectures");
+
+  if (type === "percentage") {
+    return createQuestion(
+      `PDF Pattern DI - ${data}. Chemistry lectures by B are what percent of Physics lectures by D?`,
+      chemistry[1] / physics[3] * 100,
+      "PDF Pattern Drill",
+      "Pick the two required values from the DI data and calculate required/base x 100.",
+      null,
+      visual
+    );
+  }
+  if (type === "ratio") {
+    const left = physics[0] + physics[1];
+    const right = chemistry[2];
+    const common = gcd(left, right);
+    const answer = `${left / common}:${right / common}`;
+    return createQuestion(
+      `PDF Pattern DI - ${data}. Find the ratio of Physics lectures by A and B together to Chemistry lectures by C.`,
+      answer,
+      "PDF Pattern Drill",
+      "Add the two physics values, compare with the chemistry value, and reduce the ratio.",
+      makeTextOptions(answer, [`${right / common}:${left / common}`, "1:1", "2:3", "3:2"]),
+      visual
+    );
+  }
+  return createQuestion(
+    `PDF Pattern DI - ${data}. Find the difference between total lectures by the highest and lowest teacher.`,
+    Math.max(...totals) - Math.min(...totals),
+    "PDF Pattern Drill",
+    "Add each teacher's two subjects, then subtract the smallest total from the largest.",
+    null,
+    visual
+  );
+}
+
+function pdfPatternQuestion(difficulty) {
+  return pick([
+    () => pdfIncomePatternQuestion(difficulty),
+    () => pdfWorkVariableQuestion(difficulty),
+    () => pdfQuadraticComparisonQuestion(difficulty),
+    () => pdfProfitDiscountQuestion(difficulty),
+    () => pdfSeriesFollowupQuestion(difficulty),
+    () => pdfDISetQuestion(difficulty)
+  ])();
+}
+
 function bankingQuestion(difficulty) {
   return pick([
+    () => pdfPatternQuestion(difficulty),
     () => simplificationQuestion(difficulty),
     () => approximationQuestion(difficulty),
     () => quadraticQuestion(difficulty),
@@ -921,6 +1171,7 @@ function generateQuestion(topic, difficulty, mode) {
     cubeRoots: () => cubeRootQuestion(difficulty),
     powers: () => powerQuestion(difficulty),
     banking: () => bankingQuestion(difficulty),
+    pdfPattern: () => pdfPatternQuestion(difficulty),
     simplification: () => simplificationQuestion(difficulty),
     approximation: () => approximationQuestion(difficulty),
     quadratic: () => quadraticQuestion(difficulty),
@@ -977,15 +1228,17 @@ function generateQuiz(mode, topic, difficulty, count) {
     count,
     questions,
     answers: Array(count).fill(null),
+    questionSeconds: Array(count).fill(0),
     currentQuestion: 0,
     startedAt: Date.now(),
     elapsedSeconds: 0,
+    paused: false,
     status: "active"
   };
 }
 
 function modeName(mode) {
-  return mode === "quick" ? "Vedic and Mental Maths" : "IBPS Clerk and Banking Exams";
+  return mode === "quick" ? "Vedic and Mental Maths" : "IBPS Clerk Prep";
 }
 
 function topicName(topic) {
@@ -999,6 +1252,29 @@ function escapeHtml(value) {
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
+}
+
+function renderQuestionVisual(visual) {
+  if (!visual || visual.type !== "bar") return "";
+  const max = Math.max(...visual.values, 1);
+  return `
+    <div class="question-visual">
+      <strong>${escapeHtml(visual.title)}</strong>
+      <div class="bar-visual">
+        ${visual.labels.map((label, index) => {
+          const value = visual.values[index];
+          const width = Math.max(4, Math.round((value / max) * 100));
+          return `
+            <div class="bar-row">
+              <span class="bar-label">${escapeHtml(label)}</span>
+              <span class="bar-track"><span class="bar-fill" style="width: ${width}%"></span></span>
+              <span class="bar-value">${escapeHtml(formatNumber(value))}${visual.unit ? ` ${escapeHtml(visual.unit)}` : ""}</span>
+            </div>
+          `;
+        }).join("")}
+      </div>
+    </div>
+  `;
 }
 
 function getHistory() {
@@ -1029,6 +1305,25 @@ function renderDashboard() {
   screen = "dashboard";
   const stats = calculateStats();
   const resume = activeQuiz?.status === "active";
+  const user = getCurrentUser();
+  const profileStats = userStats(user);
+  const remainingDays = daysUntil(user?.examDate);
+  const profileCard = user
+    ? `
+      <div class="profile-mini">
+        <span class="countdown-chip">${remainingDays === null ? "Exam date not set" : remainingDays >= 0 ? `${remainingDays} days left` : "Exam date passed"}</span>
+        <strong>${escapeHtml(user.examName)}</strong>
+        <span>${escapeHtml(user.name)} &bull; ${profileStats.completed} tests &bull; ${profileStats.totalQuestions} questions</span>
+        <small>Average score ${profileStats.averageScore}% &bull; Avg/question ${formatTime(profileStats.averageSeconds)}</small>
+      </div>
+    `
+    : `
+      <div class="profile-mini">
+        <span class="countdown-chip">Login to track</span>
+        <strong>Set your exam target</strong>
+        <span>Save test activity, progress and countdown locally.</span>
+      </div>
+    `;
 
   app.innerHTML = `
     <section class="dashboard">
@@ -1044,6 +1339,7 @@ function renderDashboard() {
           <div class="stat"><strong>${stats.completed}</strong><span>Tests finished</span></div>
           <div class="stat"><strong>${stats.average}%</strong><span>Average score</span></div>
         </div>
+        ${profileCard}
       </article>
 
       <aside class="setup-card">
@@ -1060,7 +1356,7 @@ function renderDashboard() {
           <label class="choice-card">
             <input type="radio" name="mode" value="banking" ${selectedSetup.mode === "banking" ? "checked" : ""}>
             <span class="choice-icon">%</span>
-            <span><strong>IBPS Clerk and Banking Exams</strong><small>Arithmetic, quantitative aptitude, DI and data analysis</small></span>
+            <span><strong>IBPS Clerk Prep</strong><small>Prelims and mains quantitative aptitude with DI</small></span>
           </label>
         </div>
 
@@ -1073,12 +1369,12 @@ function renderDashboard() {
               `).join("")}
             </optgroup>
             <optgroup label="IBPS Clerk Quantitative Aptitude">
-              ${IBPS_TOPIC_KEYS.slice(0, 18).map((value) => `
+              ${IBPS_TOPIC_KEYS.slice(0, IBPS_TOPIC_KEYS.indexOf("dataAnalysis")).map((value) => `
                 <option value="${value}" ${selectedSetup.topic === value ? "selected" : ""}>${TOPICS[value]}</option>
               `).join("")}
             </optgroup>
             <optgroup label="Data Interpretation and Analysis">
-              ${IBPS_TOPIC_KEYS.slice(18).map((value) => `
+              ${IBPS_TOPIC_KEYS.slice(IBPS_TOPIC_KEYS.indexOf("dataAnalysis")).map((value) => `
                 <option value="${value}" ${selectedSetup.topic === value ? "selected" : ""}>${TOPICS[value]}</option>
               `).join("")}
             </optgroup>
@@ -1192,12 +1488,17 @@ function renderQuiz() {
           <span>${escapeHtml(activeQuiz.difficulty)}</span><span>&bull;</span>
           <span>${answeredCount}/${activeQuiz.count} answered</span>
         </div>
-        <div class="timer"><span aria-hidden="true">&#9711;</span><span id="timerValue">${formatTime(getElapsedSeconds())}</span></div>
+        <div class="timer-actions">
+          <div class="timer"><span aria-hidden="true">&#9711;</span><span id="timerValue">${formatTime(getElapsedSeconds())}</span></div>
+          <button class="secondary-button" id="pauseButton" type="button">${activeQuiz.paused ? "Resume" : "Pause"}</button>
+        </div>
       </div>
       <div class="progress-track" aria-label="Quiz progress"><div class="progress-bar" style="width: ${progress}%"></div></div>
       <article class="quiz-card">
         <span class="question-number">${escapeHtml(item.category)} &bull; Question ${currentQuestion + 1} of ${activeQuiz.count}</span>
         <h1 class="question-text">${escapeHtml(item.text)}</h1>
+        ${activeQuiz.paused ? '<div class="pause-card"><strong>Timer paused</strong><span>Press Resume when you want to continue counting time.</span></div>' : ""}
+        ${renderQuestionVisual(item.visual)}
         <div class="options" role="radiogroup" aria-label="Answer options">
           ${item.options.map((option, index) => `
             <button class="option ${selected === option ? "selected" : ""}" type="button" role="radio"
@@ -1226,6 +1527,7 @@ function renderQuiz() {
   document.querySelectorAll(".option").forEach((button) => {
     button.addEventListener("click", () => selectAnswer(button.dataset.option));
   });
+  document.querySelector("#pauseButton").addEventListener("click", togglePauseQuiz);
   document.querySelector("#previousButton").addEventListener("click", () => goToQuestion(currentQuestion - 1));
   document.querySelector("#nextButton").addEventListener("click", () => {
     if (currentQuestion === activeQuiz.count - 1) submitQuiz();
@@ -1239,6 +1541,10 @@ function renderQuiz() {
 }
 
 function selectAnswer(answer) {
+  if (activeQuiz.paused) {
+    showToast("Resume the quiz before answering.");
+    return;
+  }
   activeQuiz.answers[currentQuestion] = answer;
   activeQuiz.currentQuestion = currentQuestion;
   activeQuiz.elapsedSeconds = getElapsedSeconds();
@@ -1249,6 +1555,10 @@ function selectAnswer(answer) {
 
 function goToQuestion(index) {
   if (index < 0 || index >= activeQuiz.count) return;
+  if (activeQuiz.paused) {
+    showToast("Resume the quiz before changing questions.");
+    return;
+  }
   currentQuestion = index;
   activeQuiz.currentQuestion = index;
   activeQuiz.elapsedSeconds = getElapsedSeconds();
@@ -1259,7 +1569,22 @@ function goToQuestion(index) {
 
 function getElapsedSeconds() {
   if (!activeQuiz) return 0;
+  if (activeQuiz.paused) return activeQuiz.elapsedSeconds || 0;
   return activeQuiz.elapsedSeconds + Math.floor((Date.now() - activeQuiz.startedAt) / 1000);
+}
+
+function togglePauseQuiz() {
+  if (!activeQuiz) return;
+  if (activeQuiz.paused) {
+    activeQuiz.paused = false;
+    activeQuiz.startedAt = Date.now();
+  } else {
+    activeQuiz.elapsedSeconds = getElapsedSeconds();
+    activeQuiz.paused = true;
+    activeQuiz.pausedAt = Date.now();
+  }
+  save(STORAGE_KEYS.active, activeQuiz);
+  renderQuiz();
 }
 
 function formatTime(seconds) {
@@ -1270,6 +1595,7 @@ function formatTime(seconds) {
 
 function startTimer() {
   stopTimer();
+  if (activeQuiz?.paused) return;
   timerId = setInterval(() => {
     const timerValue = document.querySelector("#timerValue");
     if (timerValue) timerValue.textContent = formatTime(getElapsedSeconds());
@@ -1282,6 +1608,10 @@ function stopTimer() {
 }
 
 function submitQuiz() {
+  if (activeQuiz.paused) {
+    showToast("Resume the quiz before submitting.");
+    return;
+  }
   const unanswered = activeQuiz.answers.filter((answer) => answer === null).length;
   if (unanswered > 0 && !window.confirm(`You still have ${unanswered} unanswered question${unanswered === 1 ? "" : "s"}. Submit anyway?`)) return;
 
@@ -1291,13 +1621,15 @@ function submitQuiz() {
     0
   );
   const percent = Math.round((correct / activeQuiz.count) * 100);
-  const result = { ...activeQuiz, elapsedSeconds, correct, percent, status: "completed", completedAt: Date.now() };
+  const averageSeconds = Math.round(elapsedSeconds / activeQuiz.count);
+  const result = { ...activeQuiz, elapsedSeconds, averageSeconds, correct, percent, status: "completed", completedAt: Date.now(), userId: currentUserId };
   const history = getHistory();
   history.unshift(result);
   save(STORAGE_KEYS.history, history.slice(0, 60));
   localStorage.removeItem(STORAGE_KEYS.active);
   activeQuiz = null;
   updateBadge();
+  recordUserActivity(result);
   renderResult(result);
 }
 
@@ -1326,6 +1658,7 @@ function renderResult(result) {
           <div class="summary-item"><strong>${result.correct}/${result.count}</strong><span>Correct answers</span></div>
           <div class="summary-item"><strong>${result.count - result.correct}</strong><span>Incorrect / skipped</span></div>
           <div class="summary-item"><strong>${formatTime(result.elapsedSeconds)}</strong><span>Time taken</span></div>
+          <div class="summary-item"><strong>${formatTime(result.averageSeconds || Math.round(result.elapsedSeconds / result.count))}</strong><span>Avg per question</span></div>
         </div>
         <div class="review-section">
           <h2>Answers and shortcut methods</h2>
@@ -1381,12 +1714,78 @@ function showHistory() {
   historyDialog.showModal();
 }
 
+function showProfile() {
+  const user = getCurrentUser();
+  document.querySelector("#profileNameInput").value = user?.name || "";
+  document.querySelector("#examNameInput").value = user?.examName || "IBPS Clerk";
+  document.querySelector("#examDateInput").value = user?.examDate || "";
+  document.querySelector("#logoutButton").style.display = user ? "inline-block" : "none";
+  profileDialog.showModal();
+}
+
+function saveProfileFromForm(event) {
+  event.preventDefault();
+  const existing = getCurrentUser();
+  const user = {
+    id: existing?.id || `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+    name: document.querySelector("#profileNameInput").value.trim(),
+    examName: document.querySelector("#examNameInput").value.trim(),
+    examDate: document.querySelector("#examDateInput").value,
+    createdAt: existing?.createdAt || Date.now(),
+    lastActiveAt: Date.now(),
+    activities: existing?.activities || []
+  };
+  if (!user.name || !user.examName || !user.examDate) {
+    showToast("Please fill name, exam and exam date.");
+    return;
+  }
+  saveCurrentUser(user);
+  profileDialog.close();
+  renderDashboard();
+  showToast("Login saved. Countdown and progress are active.");
+}
+
 function showToast(message) {
   toast.textContent = message;
   toast.classList.add("show");
   setTimeout(() => toast.classList.remove("show"), 2600);
 }
 
+function calculateExpression(expression) {
+  const cleaned = expression.replaceAll("x", "*").replaceAll("X", "*").trim();
+  if (!cleaned || /[^0-9+\-*/().\s]/.test(cleaned)) return "Error";
+  try {
+    const value = Function(`"use strict"; return (${cleaned});`)();
+    return Number.isFinite(value) ? formatNumber(value) : "Error";
+  } catch {
+    return "Error";
+  }
+}
+
+function handleCalculatorInput(action) {
+  if (action === "clear") {
+    calculatorDisplay.value = "";
+    return;
+  }
+  if (action === "back") {
+    calculatorDisplay.value = calculatorDisplay.value.slice(0, -1);
+    return;
+  }
+  if (action === "=") {
+    calculatorDisplay.value = calculateExpression(calculatorDisplay.value);
+    return;
+  }
+  calculatorDisplay.value += action;
+}
+
+document.querySelector("#profileButton").addEventListener("click", showProfile);
+document.querySelector("#closeProfileButton").addEventListener("click", () => profileDialog.close());
+document.querySelector("#profileForm").addEventListener("submit", saveProfileFromForm);
+document.querySelector("#logoutButton").addEventListener("click", () => {
+  profileDialog.close();
+  logoutUser();
+  showToast("Logged out from this browser.");
+});
 document.querySelector("#historyButton").addEventListener("click", showHistory);
 document.querySelector("#closeHistoryButton").addEventListener("click", () => historyDialog.close());
 document.querySelector("#doneHistoryButton").addEventListener("click", () => historyDialog.close());
@@ -1410,6 +1809,26 @@ document.querySelector("#homeButton").addEventListener("click", () => {
 historyDialog.addEventListener("click", (event) => {
   if (event.target === historyDialog) historyDialog.close();
 });
+profileDialog.addEventListener("click", (event) => {
+  if (event.target === profileDialog) profileDialog.close();
+});
+document.querySelector("#calculatorButton").addEventListener("click", () => {
+  calculatorPanel.classList.toggle("hidden");
+  if (!calculatorPanel.classList.contains("hidden")) calculatorDisplay.focus();
+});
+document.querySelector("#closeCalculatorButton").addEventListener("click", () => {
+  calculatorPanel.classList.add("hidden");
+});
+document.querySelectorAll("[data-calc]").forEach((button) => {
+  button.addEventListener("click", () => handleCalculatorInput(button.dataset.calc));
+});
+calculatorDisplay.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    calculatorDisplay.value = calculateExpression(calculatorDisplay.value);
+  }
+});
 
 updateBadge();
+updateProfileButton();
 renderDashboard();

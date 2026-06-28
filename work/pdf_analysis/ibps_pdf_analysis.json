@@ -1,0 +1,848 @@
+{
+  "analyzed_pdf_count": 15,
+  "missing_pdf_count": 6,
+  "missing_pdfs": [
+    "C:\\Users\\chind\\CrossDevice\\saichindarkar\\storage\\Recycle bin - Connected device\\IBPS Clerk Prelims Memory Based Paper (Held On_ 04 Oct, 2025 Shift 1).pdf",
+    "C:\\Users\\chind\\CrossDevice\\saichindarkar\\storage\\Recycle bin - Connected device\\IBPS Clerk Prelims Memory Based Paper (Held On_ 04 Oct, 2025 Shift 2) (1).pdf",
+    "C:\\Users\\chind\\CrossDevice\\saichindarkar\\storage\\Recycle bin - Connected device\\IBPS Clerk Prelims Memory Based Paper (Held On_ 04 Oct, 2025 Shift 2).pdf",
+    "C:\\Users\\chind\\CrossDevice\\saichindarkar\\storage\\Recycle bin - Connected device\\IBPS Clerk Syllabus 2026, Check Prelims and Mains Exam Pattern.pdf",
+    "C:\\Users\\chind\\CrossDevice\\saichindarkar\\storage\\Recycle bin - Connected device\\IBPS_Clerk_Bharti_2024_CRP_Clerks_XIV.pdf",
+    "C:\\Users\\chind\\CrossDevice\\saichindarkar\\storage\\Recycle bin - Connected device\\IBPS-Clerk-Pre-2025-Memory-Based-Paper-Based-on-4-Oct-1st-Shift.pdf"
+  ],
+  "documents": [
+    {
+      "path": "C:\\Users\\chind\\OneDrive\\Desktop\\ibps 2022 mains.pdf",
+      "file": "ibps 2022 mains.pdf",
+      "meta": {
+        "year": "2022",
+        "stage": "Mains",
+        "section_hint": "Mixed / Full Paper"
+      },
+      "pages": 65,
+      "characters": 91710,
+      "words": 15728,
+      "question_markers": 141,
+      "topics": {
+        "Simplification / Approximation": 24,
+        "Quadratic Equations": 15,
+        "Number Series / Missing Number": 2,
+        "Ratio and Proportion": 36,
+        "Percentage": 131,
+        "Profit and Loss": 18,
+        "Simple / Compound Interest": 9,
+        "Average and Ages": 84,
+        "Mixture and Alligation": 47,
+        "Time and Work": 212,
+        "Speed, Time and Distance": 35,
+        "Boats and Streams": 8,
+        "Pipes and Cisterns": 10,
+        "Mensuration": 1,
+        "Probability": 21,
+        "Permutation and Combination": 47,
+        "Data Interpretation - Tabular": 13,
+        "Data Interpretation - Line Graph": 2,
+        "Data Interpretation - Caselet / Paragraph": 32,
+        "Reasoning": 33,
+        "English": 88
+      },
+      "sections": {
+        "Quantitative Aptitude": 13,
+        "English Language": 6
+      },
+      "error": null
+    },
+    {
+      "path": "C:\\Users\\chind\\OneDrive\\Desktop\\ibps 2023 mains.pdf",
+      "file": "ibps 2023 mains.pdf",
+      "meta": {
+        "year": "2023",
+        "stage": "Mains",
+        "section_hint": "Mixed / Full Paper"
+      },
+      "pages": 78,
+      "characters": 123893,
+      "words": 20287,
+      "question_markers": 147,
+      "topics": {
+        "Simplification / Approximation": 12,
+        "Quadratic Equations": 10,
+        "Number Series / Missing Number": 10,
+        "Ratio and Proportion": 48,
+        "Percentage": 66,
+        "Profit and Loss": 32,
+        "Simple / Compound Interest": 14,
+        "Average and Ages": 87,
+        "Mixture and Alligation": 38,
+        "Time and Work": 333,
+        "Speed, Time and Distance": 30,
+        "Boats and Streams": 16,
+        "Pipes and Cisterns": 14,
+        "Mensuration": 25,
+        "Probability": 15,
+        "Permutation and Combination": 30,
+        "Data Interpretation - Tabular": 35,
+        "Data Interpretation - Caselet / Paragraph": 19,
+        "Data Interpretation - Missing DI": 3,
+        "Reasoning": 46,
+        "English": 53
+      },
+      "sections": {
+        "Quantitative Aptitude": 57
+      },
+      "error": null
+    },
+    {
+      "path": "C:\\Users\\chind\\OneDrive\\Desktop\\ibps 2022 pre 1s.pdf",
+      "file": "ibps 2022 pre 1s.pdf",
+      "meta": {
+        "year": "2022",
+        "stage": "Prelims",
+        "section_hint": "Mixed / Full Paper"
+      },
+      "pages": 36,
+      "characters": 49880,
+      "words": 8730,
+      "question_markers": 100,
+      "topics": {
+        "Simplification / Approximation": 1,
+        "Quadratic Equations": 5,
+        "Number Series / Missing Number": 9,
+        "Ratio and Proportion": 45,
+        "Percentage": 32,
+        "Profit and Loss": 14,
+        "Simple / Compound Interest": 6,
+        "Average and Ages": 39,
+        "Mixture and Alligation": 25,
+        "Time and Work": 112,
+        "Speed, Time and Distance": 44,
+        "Boats and Streams": 36,
+        "Pipes and Cisterns": 20,
+        "Mensuration": 12,
+        "Probability": 2,
+        "Permutation and Combination": 22,
+        "Data Interpretation - Tabular": 7,
+        "Data Interpretation - Line Graph": 2,
+        "Data Interpretation - Caselet / Paragraph": 23,
+        "Reasoning": 18,
+        "English": 26
+      },
+      "sections": {
+        "Quantitative Aptitude": 3
+      },
+      "error": null
+    },
+    {
+      "path": "C:\\Users\\chind\\OneDrive\\Desktop\\ibps 2023 pre.pdf",
+      "file": "ibps 2023 pre.pdf",
+      "meta": {
+        "year": "2023",
+        "stage": "Prelims",
+        "section_hint": "Mixed / Full Paper"
+      },
+      "pages": 41,
+      "characters": 55407,
+      "words": 9248,
+      "question_markers": 100,
+      "topics": {
+        "Simplification / Approximation": 1,
+        "Number Series / Missing Number": 10,
+        "Ratio and Proportion": 17,
+        "Percentage": 20,
+        "Profit and Loss": 9,
+        "Simple / Compound Interest": 7,
+        "Average and Ages": 61,
+        "Mixture and Alligation": 26,
+        "Time and Work": 152,
+        "Speed, Time and Distance": 12,
+        "Boats and Streams": 9,
+        "Mensuration": 6,
+        "Probability": 2,
+        "Permutation and Combination": 42,
+        "Data Interpretation - Tabular": 12,
+        "Data Interpretation - Caselet / Paragraph": 18,
+        "Data Interpretation - Missing DI": 3,
+        "Reasoning": 20,
+        "English": 80
+      },
+      "sections": {
+        "Quantitative Aptitude": 2
+      },
+      "error": null
+    },
+    {
+      "path": "C:\\Users\\chind\\OneDrive\\Desktop\\ibps pre 2024 1s.pdf",
+      "file": "ibps pre 2024 1s.pdf",
+      "meta": {
+        "year": "2024",
+        "stage": "Prelims",
+        "section_hint": "Mixed / Full Paper"
+      },
+      "pages": 46,
+      "characters": 76770,
+      "words": 12676,
+      "question_markers": 127,
+      "topics": {
+        "Quadratic Equations": 7,
+        "Number Series / Missing Number": 3,
+        "Ratio and Proportion": 24,
+        "Percentage": 76,
+        "Profit and Loss": 29,
+        "Simple / Compound Interest": 19,
+        "Average and Ages": 111,
+        "Mixture and Alligation": 16,
+        "Time and Work": 175,
+        "Speed, Time and Distance": 40,
+        "Boats and Streams": 16,
+        "Mensuration": 24,
+        "Probability": 2,
+        "Permutation and Combination": 39,
+        "Data Interpretation - Tabular": 9,
+        "Data Interpretation - Line Graph": 1,
+        "Data Interpretation - Caselet / Paragraph": 15,
+        "Data Interpretation - Missing DI": 1,
+        "Reasoning": 20,
+        "English": 73
+      },
+      "sections": {},
+      "error": null
+    },
+    {
+      "path": "C:\\Users\\chind\\OneDrive\\Desktop\\ibps pre 2025 1s.pdf",
+      "file": "ibps pre 2025 1s.pdf",
+      "meta": {
+        "year": "2025",
+        "stage": "Prelims",
+        "section_hint": "Mixed / Full Paper"
+      },
+      "pages": 27,
+      "characters": 77232,
+      "words": 12531,
+      "question_markers": 115,
+      "topics": {
+        "Simplification / Approximation": 3,
+        "Quadratic Equations": 10,
+        "Number Series / Missing Number": 2,
+        "Ratio and Proportion": 40,
+        "Percentage": 59,
+        "Profit and Loss": 13,
+        "Simple / Compound Interest": 7,
+        "Average and Ages": 61,
+        "Mixture and Alligation": 14,
+        "Time and Work": 176,
+        "Speed, Time and Distance": 73,
+        "Boats and Streams": 19,
+        "Pipes and Cisterns": 4,
+        "Mensuration": 10,
+        "Permutation and Combination": 24,
+        "Data Interpretation - Tabular": 9,
+        "Data Interpretation - Line Graph": 1,
+        "Data Interpretation - Caselet / Paragraph": 1,
+        "Reasoning": 25,
+        "English": 76
+      },
+      "sections": {
+        "Quantitative Aptitude": 2,
+        "English Language": 72
+      },
+      "error": null
+    },
+    {
+      "path": "C:\\Users\\chind\\OneDrive\\Desktop\\ibps 2022 pre 3s.pdf",
+      "file": "ibps 2022 pre 3s.pdf",
+      "meta": {
+        "year": "2022",
+        "stage": "Prelims",
+        "section_hint": "Mixed / Full Paper"
+      },
+      "pages": 48,
+      "characters": 52042,
+      "words": 9505,
+      "question_markers": 101,
+      "topics": {
+        "Number Series / Missing Number": 3,
+        "Ratio and Proportion": 21,
+        "Percentage": 21,
+        "Profit and Loss": 12,
+        "Simple / Compound Interest": 5,
+        "Average and Ages": 61,
+        "Mixture and Alligation": 14,
+        "Time and Work": 162,
+        "Speed, Time and Distance": 16,
+        "Boats and Streams": 16,
+        "Pipes and Cisterns": 8,
+        "Mensuration": 4,
+        "Permutation and Combination": 54,
+        "Data Interpretation - Tabular": 14,
+        "Data Interpretation - Bar Graph": 1,
+        "Data Interpretation - Caselet / Paragraph": 14,
+        "Data Interpretation - Missing DI": 1,
+        "Reasoning": 18,
+        "English": 49
+      },
+      "sections": {
+        "Quantitative Aptitude": 4,
+        "English Language": 1
+      },
+      "error": null
+    },
+    {
+      "path": "C:\\Users\\chind\\OneDrive\\Desktop\\ibps 2022 pre 4s.pdf",
+      "file": "ibps 2022 pre 4s.pdf",
+      "meta": {
+        "year": "2022",
+        "stage": "Prelims",
+        "section_hint": "Mixed / Full Paper"
+      },
+      "pages": 41,
+      "characters": 49443,
+      "words": 8690,
+      "question_markers": 100,
+      "topics": {
+        "Simplification / Approximation": 3,
+        "Number Series / Missing Number": 3,
+        "Ratio and Proportion": 8,
+        "Percentage": 28,
+        "Profit and Loss": 4,
+        "Simple / Compound Interest": 6,
+        "Average and Ages": 29,
+        "Mixture and Alligation": 9,
+        "Time and Work": 192,
+        "Speed, Time and Distance": 19,
+        "Boats and Streams": 10,
+        "Pipes and Cisterns": 1,
+        "Mensuration": 6,
+        "Probability": 1,
+        "Permutation and Combination": 48,
+        "Data Interpretation - Tabular": 2,
+        "Data Interpretation - Caselet / Paragraph": 27,
+        "Reasoning": 18,
+        "English": 66
+      },
+      "sections": {
+        "Quantitative Aptitude": 2,
+        "Reasoning Ability": 2,
+        "English Language": 10
+      },
+      "error": null
+    },
+    {
+      "path": "C:\\Users\\chind\\OneDrive\\Desktop\\ibps 2024 mains 2.pdf",
+      "file": "ibps 2024 mains 2.pdf",
+      "meta": {
+        "year": "2024",
+        "stage": "Mains",
+        "section_hint": "Mixed / Full Paper"
+      },
+      "pages": 93,
+      "characters": 178376,
+      "words": 28056,
+      "question_markers": 241,
+      "topics": {
+        "Simplification / Approximation": 18,
+        "Quadratic Equations": 34,
+        "Number Series / Missing Number": 31,
+        "Ratio and Proportion": 96,
+        "Percentage": 193,
+        "Profit and Loss": 30,
+        "Simple / Compound Interest": 32,
+        "Average and Ages": 228,
+        "Mixture and Alligation": 47,
+        "Time and Work": 624,
+        "Speed, Time and Distance": 75,
+        "Boats and Streams": 31,
+        "Pipes and Cisterns": 1,
+        "Mensuration": 16,
+        "Probability": 23,
+        "Permutation and Combination": 17,
+        "Data Interpretation - Tabular": 35,
+        "Data Interpretation - Bar Graph": 2,
+        "Data Interpretation - Caselet / Paragraph": 31,
+        "Data Interpretation - Missing DI": 3,
+        "Reasoning": 35,
+        "English": 56
+      },
+      "sections": {
+        "Quantitative Aptitude": 2,
+        "English Language": 4
+      },
+      "error": null
+    },
+    {
+      "path": "C:\\Users\\chind\\OneDrive\\Desktop\\ibps 2025 mains eng 1s.pdf",
+      "file": "ibps 2025 mains eng 1s.pdf",
+      "meta": {
+        "year": "2025",
+        "stage": "Mains",
+        "section_hint": "English Language"
+      },
+      "pages": 4,
+      "characters": 5286,
+      "words": 850,
+      "question_markers": 7,
+      "topics": {
+        "Average and Ages": 4,
+        "Mixture and Alligation": 1,
+        "Time and Work": 10,
+        "Speed, Time and Distance": 2,
+        "English": 6
+      },
+      "sections": {
+        "English Language": 1
+      },
+      "error": null
+    },
+    {
+      "path": "C:\\Users\\chind\\OneDrive\\Desktop\\ibps 2025 mains quant 1s.pdf",
+      "file": "ibps 2025 mains quant 1s.pdf",
+      "meta": {
+        "year": "2025",
+        "stage": "Mains",
+        "section_hint": "Quantitative Aptitude"
+      },
+      "pages": 10,
+      "characters": 10028,
+      "words": 1913,
+      "question_markers": 16,
+      "topics": {
+        "Simplification / Approximation": 12,
+        "Quadratic Equations": 19,
+        "Number Series / Missing Number": 6,
+        "Ratio and Proportion": 8,
+        "Percentage": 61,
+        "Profit and Loss": 28,
+        "Simple / Compound Interest": 17,
+        "Average and Ages": 4,
+        "Mixture and Alligation": 3,
+        "Time and Work": 43,
+        "Data Interpretation - Tabular": 3,
+        "Data Interpretation - Caselet / Paragraph": 2,
+        "Reasoning": 3
+      },
+      "sections": {
+        "Quantitative Aptitude": 1
+      },
+      "error": null
+    },
+    {
+      "path": "C:\\Users\\chind\\OneDrive\\Desktop\\ibps 2025 mains reasoning 1s.pdf",
+      "file": "ibps 2025 mains reasoning 1s.pdf",
+      "meta": {
+        "year": "2025",
+        "stage": "Mains",
+        "section_hint": "Reasoning Ability"
+      },
+      "pages": 5,
+      "characters": 7009,
+      "words": 1290,
+      "question_markers": 10,
+      "topics": {
+        "Percentage": 2,
+        "Average and Ages": 5,
+        "Mixture and Alligation": 2,
+        "Time and Work": 32,
+        "Permutation and Combination": 1,
+        "Data Interpretation - Tabular": 1,
+        "Data Interpretation - Caselet / Paragraph": 1,
+        "Reasoning": 2
+      },
+      "sections": {
+        "Reasoning Ability": 1
+      },
+      "error": null
+    },
+    {
+      "path": "C:\\Users\\chind\\OneDrive\\Desktop\\ibps 2022 pre 2s.pdf",
+      "file": "ibps 2022 pre 2s.pdf",
+      "meta": {
+        "year": "2022",
+        "stage": "Prelims",
+        "section_hint": "Mixed / Full Paper"
+      },
+      "pages": 48,
+      "characters": 52042,
+      "words": 9505,
+      "question_markers": 101,
+      "topics": {
+        "Number Series / Missing Number": 3,
+        "Ratio and Proportion": 21,
+        "Percentage": 21,
+        "Profit and Loss": 12,
+        "Simple / Compound Interest": 5,
+        "Average and Ages": 61,
+        "Mixture and Alligation": 14,
+        "Time and Work": 162,
+        "Speed, Time and Distance": 16,
+        "Boats and Streams": 16,
+        "Pipes and Cisterns": 8,
+        "Mensuration": 4,
+        "Permutation and Combination": 54,
+        "Data Interpretation - Tabular": 14,
+        "Data Interpretation - Bar Graph": 1,
+        "Data Interpretation - Caselet / Paragraph": 14,
+        "Data Interpretation - Missing DI": 1,
+        "Reasoning": 18,
+        "English": 49
+      },
+      "sections": {
+        "Quantitative Aptitude": 4,
+        "English Language": 1
+      },
+      "error": null
+    },
+    {
+      "path": "C:\\Users\\chind\\OneDrive\\Desktop\\ibps 2024 mains.pdf",
+      "file": "ibps 2024 mains.pdf",
+      "meta": {
+        "year": "2024",
+        "stage": "Mains",
+        "section_hint": "Mixed / Full Paper"
+      },
+      "pages": 89,
+      "characters": 173469,
+      "words": 28730,
+      "question_markers": 241,
+      "topics": {
+        "Simplification / Approximation": 16,
+        "Quadratic Equations": 40,
+        "Number Series / Missing Number": 42,
+        "Ratio and Proportion": 94,
+        "Percentage": 210,
+        "Profit and Loss": 30,
+        "Simple / Compound Interest": 32,
+        "Average and Ages": 240,
+        "Mixture and Alligation": 34,
+        "Time and Work": 662,
+        "Speed, Time and Distance": 65,
+        "Boats and Streams": 28,
+        "Pipes and Cisterns": 1,
+        "Mensuration": 16,
+        "Probability": 24,
+        "Permutation and Combination": 29,
+        "Data Interpretation - Tabular": 35,
+        "Data Interpretation - Bar Graph": 1,
+        "Data Interpretation - Caselet / Paragraph": 34,
+        "Data Interpretation - Missing DI": 3,
+        "Reasoning": 35,
+        "English": 56
+      },
+      "sections": {
+        "Quantitative Aptitude": 2,
+        "English Language": 4
+      },
+      "error": null
+    },
+    {
+      "path": "C:\\Users\\chind\\OneDrive\\Desktop\\ibps pre 2025 2s.pdf",
+      "file": "ibps pre 2025 2s.pdf",
+      "meta": {
+        "year": "2025",
+        "stage": "Prelims",
+        "section_hint": "Mixed / Full Paper"
+      },
+      "pages": 26,
+      "characters": 69289,
+      "words": 11508,
+      "question_markers": 179,
+      "topics": {
+        "Simplification / Approximation": 1,
+        "Quadratic Equations": 5,
+        "Number Series / Missing Number": 4,
+        "Ratio and Proportion": 24,
+        "Percentage": 18,
+        "Profit and Loss": 7,
+        "Simple / Compound Interest": 8,
+        "Average and Ages": 119,
+        "Mixture and Alligation": 19,
+        "Time and Work": 125,
+        "Speed, Time and Distance": 27,
+        "Boats and Streams": 13,
+        "Pipes and Cisterns": 18,
+        "Mensuration": 12,
+        "Probability": 4,
+        "Permutation and Combination": 23,
+        "Data Interpretation - Tabular": 5,
+        "Data Interpretation - Bar Graph": 1,
+        "Data Interpretation - Caselet / Paragraph": 15,
+        "Data Interpretation - Missing DI": 1,
+        "Reasoning": 18,
+        "English": 54
+      },
+      "sections": {
+        "Reasoning Ability": 5,
+        "English Language": 41
+      },
+      "error": null
+    }
+  ],
+  "aggregate_topics": [
+    [
+      "Time and Work",
+      3172
+    ],
+    [
+      "Average and Ages",
+      1194
+    ],
+    [
+      "Percentage",
+      938
+    ],
+    [
+      "English",
+      732
+    ],
+    [
+      "Ratio and Proportion",
+      482
+    ],
+    [
+      "Speed, Time and Distance",
+      454
+    ],
+    [
+      "Permutation and Combination",
+      430
+    ],
+    [
+      "Mixture and Alligation",
+      309
+    ],
+    [
+      "Reasoning",
+      309
+    ],
+    [
+      "Data Interpretation - Caselet / Paragraph",
+      246
+    ],
+    [
+      "Profit and Loss",
+      238
+    ],
+    [
+      "Boats and Streams",
+      218
+    ],
+    [
+      "Data Interpretation - Tabular",
+      194
+    ],
+    [
+      "Simple / Compound Interest",
+      167
+    ],
+    [
+      "Quadratic Equations",
+      145
+    ],
+    [
+      "Mensuration",
+      136
+    ],
+    [
+      "Number Series / Missing Number",
+      128
+    ],
+    [
+      "Probability",
+      94
+    ],
+    [
+      "Simplification / Approximation",
+      91
+    ],
+    [
+      "Pipes and Cisterns",
+      85
+    ],
+    [
+      "Data Interpretation - Missing DI",
+      16
+    ],
+    [
+      "Data Interpretation - Line Graph",
+      6
+    ],
+    [
+      "Data Interpretation - Bar Graph",
+      6
+    ]
+  ],
+  "aggregate_sections": [
+    [
+      "English Language",
+      140
+    ],
+    [
+      "Quantitative Aptitude",
+      92
+    ],
+    [
+      "Reasoning Ability",
+      8
+    ]
+  ],
+  "representative_lines": {
+    "Simplification / Approximation": [
+      "Q91. In which of the following series value of X is not satisfied properly?",
+      "Q92. If \u2018Z + 4 = X \u2013 27\u2019, then which of the following is true about value of \u2018Z\u2019?",
+      "gap, and the challenging living conditions for approximately 600,000 households residing in non -owned",
+      "Q92. If X is 140% more than the missing term of the above series, then find the value of X.",
+      "\u2022 Snowy\u2019s reaction was calculated and effective, not panic-"
+    ],
+    "Quadratic Equations": [
+      "Directions (132-135): In each of the following questions, two equations (I) and (II) are given. Solve",
+      "(e) if x = y or no relation can be established between x and y.",
+      "Q93. If smallest root of equation 6x2 + 11x + 4 = 0 is \u2018a\u2019 , then find the value of 64a.",
+      "Q120. In the question, two equation (i) and (ii) are given. You have to solve both the equations and",
+      "Speed of boat in still water = 4x+x = 5x kmph"
+    ],
+    "Number Series / Missing Number": [
+      "Q91. In which of the following series value of X is not satisfied properly?",
+      "Directions (92-93): Solve the given series and answer the question given below.",
+      "(II) Solving the intricate puzzle required a _____________ series of logical steps and careful analysis.",
+      "In alphabetical series A -Z each letter except vowels and consonants (M, N and P) is assigned a different",
+      "Direction (31 \u2013 35): What will come in the place of question (?) mark in following number series."
+    ],
+    "Ratio and Proportion": [
+      "concentration of atmospheric water vapor which supplies the water for precipitation increases in",
+      "proportion to the saturation concentrations at a rate of about 6\u20137% per degree rise in temperature",
+      "(C) Even though this book does not feature magical elements, it __________ around aspirations and wishes.",
+      "(I) After careful and ___________ consideration, the committee reached a consensus on the proposed",
+      "1 Adda247 | No. 1 APP for Banking & SSC Preparation"
+    ],
+    "Percentage": [
+      "The hydrological cycle is expected to _____________ with global warming, which likely increases the intensity",
+      "theorized expectation of increases in water\u2010holding capacity of the atmosphere in the warmer conditions,",
+      "More than 80% of South African pharmaceutical manufacturing and distribution revenue is from the",
+      "pressure due to low regulated price increases for scheduled pharmaceuticals in a high inflation",
+      "find total boats used by fishermen are what percent of total ships manufactured by A?"
+    ],
+    "Profit and Loss": [
+      "(c) It can used as intermediate storage which may leads to evaporation loss.",
+      "Q96. The marked price of articles A and B are in the ratio of 4: 3. The discount percentage given on",
+      "Q32. What contributes to the challenge of maintaining profitable margins for pharmaceutical",
+      "(a) Excessive government regulations leading to inflated production costs and reduced profit margins.",
+      "withdrew 40% of his initial investment. If at the end of year, P got Rs. 210 as profit share out of total profit"
+    ],
+    "Simple / Compound Interest": [
+      "(B)with the obligation (C)to act in the patient's best interest, deliberating (D)cultural differences in",
+      "medical decision-making, and managing conflicts of interest.",
+      "Q113. A man invested Rs P for \u2018T\u2019 years at 14% p.a. in simple interest, while he invested Rs \u2018P+600\u2019",
+      "for two years at 20% p.a. in compound interest, such that the total interest received is Rs 1464. If",
+      "Q45. A man invested Rs. P on simple interest at 18% p.a. for three years and received Rs. (0.5P + 100) as"
+    ],
+    "Average and Ages": [
+      "Directions (1-7): Read the given passage to answer the following questions",
+      "30-year averaged annual precipitation maxima aggregated over the dry and wet regions of the world is",
+      "Directions (1-5): In the following passage there are blanks, each of which has been numbered and",
+      "one word has been suggested alongside the blank. These numbers are printed below the passage",
+      "Directions (1-8): Read the given passage and answer the following questions based on that."
+    ],
+    "Mixture and Alligation": [
+      "theorized expectation of increases in water\u2010holding capacity of the atmosphere in the warmer conditions,",
+      "especially when water availability is limited. Results show an intensification of extreme precipitation and",
+      "Q23. In her water -scarce village, young Aisha observed the daily struggle for this precious resource.",
+      "Troubled by the hardships faced by the villagers, especially the children, due to the scarcity of water, Aisha",
+      "(c) Post dissolution of Soviet Union, Russia was still in its timid state."
+    ],
+    "Time and Work": [
+      "for global change in different climate regimes to ensure a sustainable socioeconomic development at the",
+      "Q6. Which of the following is the antonym of \u2018uniform\u2019 as mentioned in the passage?",
+      "blank fits the passage, choose option \u201cNo replacement required\u201d as the correct choice.",
+      "along its weak points, leaving it mostly intact but segmented like a slinky snake.",
+      "permanently in recreational vehicles with no permanent address. Many are retired, but many others work"
+    ],
+    "Speed, Time and Distance": [
+      "knew that the eight hours he was prepared to sit in front of his computer today would end with the",
+      "workplace can be effective (C) through cultural challenges (D) training, active listening, and open-",
+      "(I) In the face of budget constraints, the team took a _______________ approach, focusing on cost-",
+      "(B) His generous offer to cover the expenses for the entire team's training workshop was greatly",
+      "covered great distances across a changing world."
+    ],
+    "Boats and Streams": [
+      "Q140. If a boat travels P km upstream in 44 minutes and 2P km downstream in 1 hour 6 minutes.",
+      "Find speed of boat in still water is what percentage of the speed of stream?",
+      "Q117. Boat P can cover some distance downstream in \u2018a-5\u2019 hours, and the same boat can cover the",
+      "same distance upstream in \u2018a+5\u2019 hours. The speed of the boat P in still water is 12 km/hr. If the",
+      "Direction (36 \u2013 40); Line graph given below shows total number of boats and ships manufactured by four"
+    ],
+    "Pipes and Cisterns": [
+      "should fill the omitted part making the paragraph grammatically correct and contextually",
+      "meaningful. If none of the given alternatives is appropriate to fill the blank, choose option (E) i.e.",
+      "Q8. Choose the most suitable word to fill in the statement (B).",
+      "Q9. Choose the most suitable word to fill in the statement (C).",
+      "Q46. Pipe A can fill a tank in 4 hours and pipe B can fill the same tank in 6 hours. If A, B & pipe C can together"
+    ],
+    "Mensuration": [
+      "(C) The issue has been debated in beach sports circles for several",
+      "environment. In the retail sector, companies like Cli cks and Dis-Chem have wholesale volume advantages",
+      "(II) Big companies like Clicks and Dis-Chem have advantages because they trade in high volume.",
+      "on the sidewalk, to camp or sleep anywhere in a downtown area or to hang around in a public place without",
+      "Filmmaking research is a developing area and films produced within the academy are growing in number."
+    ],
+    "Probability": [
+      "(c) Changes in atmospheric dynamics primarily amplify extreme precipitation globally",
+      "(d) Changes in atmospheric dynamics primarily weaken extreme precipitation globally.",
+      "threat to New Zealand's democratic ideals. Despite being ranked the second freest nation globally in 2021,",
+      "(a) New Zealand was ranked the freest nation globally in 2021.",
+      "subjected to intense legal scrutiny. Law enf orcement institutions are even prejudiced against specific"
+    ],
+    "Permutation and Combination": [
+      "Q8. Which of the following sentence should be the fifth sentence after the rearrangement?",
+      "Q9. Which of the following sentence should be the first sentence after the rearrangement?",
+      "Q6. Which of the following sentence is the FIRST sentence in the sequence after rearrangement?",
+      "Q7. Which of the following sentence is the LAST sentence in the sequence after rearrangement?",
+      "Home is where the heart is, or so goes the adage. But the human heart did not always crave a still hearth."
+    ],
+    "Data Interpretation - Tabular": [
+      "detectable for rare flood-producing precipitation events. Understanding of the relationships between the",
+      "(a) It is irrelevant to future planning, as the impact of global change is too unpredictable to plan for",
+      "Q8. Choose the most suitable word to fill in the statement (B).",
+      "Q9. Choose the most suitable word to fill in the statement (C).",
+      "Eight persons A, B, C, D, E, F, G and H sit around a square table such that four persons sit at corner and the"
+    ],
+    "Data Interpretation - Line Graph": [
+      "Directions (103-107): The line graph shows the total number of people (Males + females) in four",
+      "fitness gyms in the year 2001 and 2005. Read the line graph carefully and answer the questions.",
+      "Direction (36 \u2013 40); Line graph given below shows total number of boats and ships manufactured by four",
+      "Read the line graph carefully and answer the questions.",
+      "C , D & E). Read the line graph and answer the following questions."
+    ],
+    "Data Interpretation - Bar Graph": [
+      "Directions (36-40): The bar graph given below shows the total number of posts (Photos + Reels)",
+      "Directions (175-180): Read the following bar graph carefully and answer the questions given below.",
+      "The bar graph shows the total number of people who votes in two different years in four different",
+      "Directions (36-40): The bar graph given below shows the total number of posts (Photos + Reels)",
+      "Directions (175-180): Read the following bar graph carefully and answer the questions given below. The bar"
+    ],
+    "Data Interpretation - Caselet / Paragraph": [
+      "Directions (18-20): In each of the question a paragraph is given and based on the paragraph a blank",
+      "form a single sentence from the two sentences given below, implying the same meaning as",
+      "Directions (6-9): Rearrange the following sentences to form a coherent paragraph and answer the",
+      "Directions (16-20): Given below are two statements in each question. Each statement has one blank",
+      "Directions (15): A word has been given below, and following it are provided three sentences which use"
+    ],
+    "Data Interpretation - Missing DI": [
+      "Q91. If the ratio of X to the missing term of the above series is 5:2, respectively, then find the value",
+      "Q92. If X is 140% more than the missing term of the above series, then find the value of X.",
+      "Therefore, the correct sentence would be: \u201cSince the police have not given a statement yet, the reporter can",
+      "Directions (78-82): Find the missing term of the given series.",
+      "John has consistently demonstrated a lack of punctuality, often arriving late to meetings and missing"
+    ],
+    "Reasoning": [
+      "Directions (1-7): Read the given passage to answer the following questions",
+      "Directions (8-12): Six sentences are given in the passage, in which the third sentence is fixed and",
+      "Directions (1-5): In the following passage there are blanks, each of which has been numbered and",
+      "Q1. Our world\u2019s surface is a jumble of ______1______( puzzle) tectonic plates, with new ones emerging as",
+      "Directions (1-8): Read the given passage and answer the following questions based on that."
+    ],
+    "English": [
+      "Directions (8-12): Six sentences are given in the passage, in which the third sentence is fixed and",
+      "given in bold. Rearrange these sentences in a correct order to answer the following questions.",
+      "Directions (6-9): Rearrange the following sentences to form a coherent paragraph and answer the",
+      "Q6. Which of the following sentence is the FIRST sentence in the sequence after rearrangement?",
+      "(c) UK has criminalized wandering, to the extent of giving out death sentences."
+    ]
+  }
+}

@@ -18,6 +18,14 @@
         </span>
       </button>
       <nav class="top-actions" aria-label="Main navigation">
+        <button class="icon-button" id="profileButton" type="button">
+          <span aria-hidden="true">&#9786;</span>
+          <span id="profileButtonText">Login</span>
+        </button>
+        <button class="icon-button" id="calculatorButton" type="button">
+          <span aria-hidden="true">=</span>
+          <span>Calculator</span>
+        </button>
         <button class="icon-button" id="historyButton" type="button">
           <span aria-hidden="true">&#8635;</span>
           <span>History</span>
@@ -45,6 +53,65 @@
       <button class="secondary-button" id="doneHistoryButton" type="button">Done</button>
     </div>
   </dialog>
+
+  <dialog class="profile-dialog" id="profileDialog">
+    <div class="dialog-head">
+      <div>
+        <span class="eyebrow">Local profile</span>
+        <h2>Login and exam countdown</h2>
+      </div>
+      <button class="close-button" id="closeProfileButton" type="button" aria-label="Close profile">&times;</button>
+    </div>
+    <form id="profileForm" class="profile-form">
+      <label>
+        <span class="field-label">Your name</span>
+        <input id="profileNameInput" type="text" autocomplete="name" placeholder="Enter your name" required>
+      </label>
+      <label>
+        <span class="field-label">Attempting exam</span>
+        <input id="examNameInput" type="text" placeholder="Example: IBPS Clerk Prelims" required>
+      </label>
+      <label>
+        <span class="field-label">Exam date</span>
+        <input id="examDateInput" type="date" required>
+      </label>
+      <p class="setup-note">This is a local login for this browser. It saves your progress, activity and countdown on this device.</p>
+      <div class="dialog-footer compact-footer">
+        <button class="text-button danger" id="logoutButton" type="button">Logout</button>
+        <button class="primary-button compact-primary" type="submit">Save profile</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div class="calculator-panel hidden" id="calculatorPanel" aria-label="Calculator">
+    <div class="calculator-head">
+      <strong>Calculator</strong>
+      <button class="close-button small-close" id="closeCalculatorButton" type="button" aria-label="Close calculator">&times;</button>
+    </div>
+    <input class="calculator-display" id="calculatorDisplay" type="text" inputmode="decimal" aria-label="Calculator expression" placeholder="0">
+    <div class="calculator-grid">
+      <button type="button" data-calc="7">7</button>
+      <button type="button" data-calc="8">8</button>
+      <button type="button" data-calc="9">9</button>
+      <button type="button" data-calc="/">/</button>
+      <button type="button" data-calc="4">4</button>
+      <button type="button" data-calc="5">5</button>
+      <button type="button" data-calc="6">6</button>
+      <button type="button" data-calc="*">x</button>
+      <button type="button" data-calc="1">1</button>
+      <button type="button" data-calc="2">2</button>
+      <button type="button" data-calc="3">3</button>
+      <button type="button" data-calc="-">-</button>
+      <button type="button" data-calc="0">0</button>
+      <button type="button" data-calc=".">.</button>
+      <button type="button" data-calc="=">=</button>
+      <button type="button" data-calc="+">+</button>
+      <button type="button" data-calc="(">(</button>
+      <button type="button" data-calc=")">)</button>
+      <button type="button" data-calc="back">Back</button>
+      <button type="button" data-calc="clear">Clear</button>
+    </div>
+  </div>
 
   <script src="app.js"></script>
 </body>

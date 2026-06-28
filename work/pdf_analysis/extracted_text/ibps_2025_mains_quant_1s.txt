@@ -1,0 +1,475 @@
+ 
+ 
+1 
+ 
+                   
+ 
+IBPS Clerk Mains Memory Based Quant Section - 20 Nov 2025 Shift 1  
+ 
+Q1. A man spends X% of his income on rent. Out of the remaining amount, he spends 30% on 
+EMI and invests the rest in Fixed Deposit (FD) and Bank in the ratio 3 : 7 respectively . If the 
+amount invested in FD is equal to the amount spent on EMI, find the value of X. 
+(a) 10 
+(b) 5 
+(c) 15 
+(d) 20 
+(e) Can’t be determined 
+ 
+Q2. A, B, and C are three workers who can complete a certain piece of work. A alone can complete 
+the work in 10 days. B alone can complete the same work in 2X days. B and C together can 
+complete the work in X days. A and B start the work together and continue working for 5 days, 
+after which they have to leave. If the remaining work is completed by C alone in 10 days, then find 
+X. 
+(a) 25 
+(b) 15 
+(c) 10 
+(d) 5 
+(e) 30 
+ 
+Q3. I. 9x² - 45x + 56 = 0 
+II. y² - 2 
+1
+3y + 1 
+1
+3 = 0  
+(a) If x > y  
+(b) If x ≥ y  
+(c) If x < y 
+(d) If x ≤ y  
+(e) If x = y or no relation can be established between x and y 
+ 
+Q4. The cost prices of Articles A and B are in the ratio of 12 : 25, and both are marked 40% above 
+their respective cost prices; if the selling prices of both articles are equal to Rs 375, with Article 
+A sold at a profit of Rs 75 and Article B sold at a loss of 40%, find the discount percentage allowed 
+on Article A (approx.). 
+(a) 8% 
+(b) 14% 
+(c) 11% 
+(d) 4% 
+(e) 21% 
+
+ 
+ 
+2 
+ 
+                   
+ 
+ 
+Directions (5–6): Carefully solve the given equation and answer the questions given below.  
+Equation I: 
+𝟑𝒙𝟑−𝟏𝟒𝒙𝟐+𝑷𝒙
+𝒙 = 𝟎 
+Note: 3 is the one root of the given equation. 
+ 
+Q5. Find the difference between the value of P and the highest root of the equation y² −
+𝟗
+𝟐 𝒚 + 5 = 
+0. 
+(a) 11.5 
+(b) 10 
+(c) 12.5 
+(d) 8 
+(e) 7.5 
+ 
+Q6. Find the product of P and the smallest root of the equation I. 
+(a) 30 
+(b) 40 
+(c) 35 
+(d) 28 
+(e) 20 
+ 
+Q7. A man invests Rs X in Scheme A, which offers simple interest at 20% per annum for 3 years, 
+and the same amount invested in Scheme B, which offers simple interest at Y% per annum for 2 
+years. If the interest received from Scheme A is 1 
+𝟏
+𝟓 times that of Scheme B, find the value of Y. 
+(a) 10 
+(b) 30 
+(c) 15 
+(d) 20 
+(e) 25 
+ 
+Q8. Find the 8th term of the given series. 
+Series I: 96,  97,  105,  114,  178,  203    
+(a) 419 
+(b) 468 
+(c) 532 
+(d) 980 
+(e) None of these 
+
+ 
+ 
+3 
+ 
+                   
+ 
+ 
+Directions (9–10): Find the pattern of the given series and answer the questions given below. 
+Series I:  4,  9,  19, 39,  A,  B 
+ 
+Q9. B is what percentage of A (approx.). 
+(a) 201% 
+(b) 196% 
+(c) 214% 
+(d) 189% 
+(e) 175% 
+ 
+Q10. Find the value of (A - 9) × (B/3). 
+(a) 3310 
+(b) 3710 
+(c) 3550 
+(d) 3890 
+(e) 3020 
+ 
+ Direction (11-15): The pie chart shows the number of lectures taken by four different teachers 
+and the table shows some information to find the data. Calculate the data carefully and answer 
+the following question. 
+ 
+ 
+Q11. Find a number of lectures of chemistry taken by B is what percentage of lectures of physics 
+taken by D. 
+(a) 72% 
+(b) 75% 
+(c) 82% 
+(d) 85% 
+(e) 90% 
+16%
+20%
+40%
+24%
+Total lectures = 250 
+A
+B
+C
+D
+Teachers Information 
+A Number of physics lectures is 
+20% out of the total lectures 
+B The chemistry lecture taken by A 
+is equal to physic lecture taken 
+by B 
+C The physics lectures taken is 20 
+more than the chemistry 
+lectures. 
+D The ratio of physics to chemistry 
+lecture taken is 5:7. 
+ 
+ 
+4 
+ 
+                   
+ 
+ 
+Q12. Find the ratio of total number of physics lectures taken by A and B together to total number 
+of chemistry lectures taken by C.  
+(a) 2:1 
+(b) 1:1 
+(c) 4:3 
+(d) 2:3 
+(e) 1:8 
+ 
+Q13. The lectures taken by new teacher F is 20% less than the total number of lecture taken by 
+B and C together. The ratio of physics lecture taken by A to F is 2:1. Find the chemistry lectures 
+taken by F.  
+(a) 21 
+(b) 25 
+(c) 28 
+(d) 40 
+(e) 18 
+ 
+Q14. Find the sum of difference between physics and chemistry lecture taken by B and sum of 
+chemistry lectures taken by C and D.  
+(a) 89 
+(b) 80 
+(c) 98 
+(d) 100 
+(e) 78 
+ 
+Q15. If 25% of the total lecture of chemistry taken by A are of organic chemistry and the ratio of 
+organic to physical chemistry lecture s is 2:5. Find the difference between inorganic chemistry 
+lectures taken by A and total physics lecture taken by D (chemistry lectures = organic + inorganic 
++physical). 
+(a) 21 
+(b) 25 
+(c) 28 
+(d) 20 
+(e) 18 
+ 
+Solutions 
+ 
+S1. Ans.(e)  
+Sol. Information Given in the Question: 
+X% of income is spent on rent. 
+From the remaining, 30% is spent on EMI. 
+The rest is invested in FD and Bank in the ratio 3:7. 
+Amount invested in FD = amount spent on EMI. 
+ 
+ 
+5 
+ 
+                   
+ 
+Detailed Explanation: 
+Let total income = Rs 100 
+Amount spent on rent = X 
+Remaining after rent = (100 - X) 
+EMI = 30% of (100 - X) = 0.3(100 - X) 
+Remaining after EMI = (100 - X) - 0.3(100 - X) 
+= (100 - X)(1 - 0.3) = 0.7(100 - X) 
+FD investment = (3/10) × 0.7(100 - X) = 0.21(100 - X) 
+Given, FD = EMI: 
+ATQ, 
+0.3(100 - X) = 0.21(100 - X) 
+0.3 = 0.21 
+X can be determined. 
+ 
+S2. Ans.(b)  
+Sol. Information Given in the Question: 
+A completes work in 10 days  
+B completes in 2X days  
+B + C together complete in X days  
+A and B work together for 5 days 
+C completes the remaining work in 10 days 
+We need to find the value of X. 
+Concept/Formula Used in the Question: 
+Work = Rate × Time 
+Detailed Explanation: 
+Let the total work work (LCM of 10, 2X, X) = 30X 
+A’s rate = 30X/10 = 3X/day 
+B = 30X / 2X = 15 units/day 
+B + C = 30X / X = 30 units/day 
+So C = 30 - 15 = 15 units/day 
+Work done by A and B in 5 days = (3X + 15) × 5 
+Remaining work = 30X - (3X + 15) × 5 = 30X - (15X + 75) = 15X - 75 
+C does remaining in 10 days → 10 × 15 = 150 
+So: 15X - 75 = 150 
+15X = 225 
+X = 15 
+ 
+S3. Ans.(a)  
+Sol. I. 9x² - 45x + 56 = 0 
+9x² - 21x – 24x + 56 = 0 
+3x(3x – 7) – 8(3x – 7) = 0 
+(3x - 7) (3x  -8) = 0 
+
+ 
+ 
+6 
+ 
+                   
+ 
+x = 7/3, 8/3 
+II. y² - 2 
+1
+3y + 1 
+1
+3 = 0  
+y²- 
+7
+3 𝑦 + 
+4
+3 = 0 
+3y² - 7y + 4 = 0 
+3y² - 3y - 4y + 4 = 0 
+3y(y – 1) – 4(y – 1) = 0 
+y = 1, 4/3 
+So, x > y 
+ 
+S4. Ans.(c)  
+Sol. Information Given in the Question: 
+Cost price of A : Cost price of B = 12 : 25 
+Both are marked 40% above their respective Cost prices 
+Selling price of both A and B = Rs 375  
+Article A sold at profit of Rs 75 → CP of A = 375 - 75 = Rs 300 
+Article B sold at 40% loss → CP of B = 375 / (1 - 0.40) = Rs 625 
+Need to find the discount % on Article A. 
+Concept/Formula Used in the Question: 
+Marked Price (MP) = CP × (1 + Markup%) 
+Selling Price (SP) = MP × (1 - Discount%) 
+Discount % = [(MP - SP)/MP] × 100 
+Detailed Explanation: 
+Let Cost price of Article A = Rs 12x 
+Then, Cost price of B = Rs 25x 
+For Article A: 
+Profit = Rs 75 
+Selling price = Cost price + Profit = 12x + 75 = 375 Rs  
+⇒ 12x = 300 
+⇒ x = 25 
+So, Cost price of A = 12 × 25 = Rs 300 
+Marked price of A = 300 × 1.4 = Rs 420 
+Selling price = Rs 375 
+Discount = 420 - 375 = Rs 45 
+Discount % = (45 / 420) × 100 = 10.71% = 11% (approx.) 
+Sol. (5-6) 
+3𝑥3 − 14𝑥2 + 𝑃𝑥
+𝑥 = 0 
+3x² - 14x + P = 0 
+Given, 3 is the one root of the given equation. 
+3(3)² - 14(3) + P = 0 
+27 – 42 + P = 0 
+ 
+ 
+7 
+ 
+                   
+ 
+P = 15 
+3x² - 14x + 15 = 0 
+3x² - 9x - 5x + 15 = 0 
+3x (3x- 9) -5 (x - 3) = 0 
+(3x – 5) (3x – 9) = 0 
+x = 9/3, 5/3 
+x = 3, 5/3 
+ 
+S5. Ans.(c)  
+Sol. y² −
+9
+2 𝑦 + 5 = 0. 
+2y² - 9y + 10 = 0 
+2y² - 4y – 5y + 10 = 0 
+2y(y – 2) -5(y – 2) = 0 
+(2y -5) (y – 2) = 0 
+y = 5/2, 2 
+Required difference = 15 – 2.5 = 12.5 
+ 
+S6. Ans.(a)  
+Sol. Required product = 15 × 2 = 30 
+ 
+S7. Ans.(e)  
+Sol. Information Given in the Question: 
+Amount invested in both schemes = Rs. X 
+Scheme A: SI at 20% p.a. for 3 years 
+Scheme B: SI at Y% p.a. for 2 years 
+Interest from Scheme A = 
+6
+5times interest from Scheme B 
+Need to find the value of Y 
+Concept/Formula Used in the Question: 
+Simple Interest (SI) = (P × R × T)/100 
+Compare SI from both schemes 
+Interest A = 
+6
+5 ×Interest B 
+Detailed Explanation: 
+Let’s calculate SI from both schemes. 
+Scheme A: 
+Simple interest = 
+𝑋×20×3
+100 =
+60𝑋
+100 =
+3𝑋
+5  
+Scheme B: 
+Simple interest = 
+𝑋×𝑌×2
+100 =
+2𝑋𝑌
+100 
+Given: 
+3𝑋
+5 = 6
+5 × 2𝑋𝑌
+100 
+ 
+ 
+8 
+ 
+                   
+ 
+3
+5 = 6
+5 × 2𝑌
+100 
+3 = 6 × 2𝑌
+100 
+3 = 12𝑌
+100 
+𝑌 =
+3×100
+12 = 25  
+ 
+S8. Ans.(b)  
+Sol. The pattern of the series:  
+ 
+Seventh term = 203 + 6³ = 419 
+Eighth term = 419 + 7² = 468 
+ 
+Solutions (9-10): The pattern of the Series I:  
+ 
+ 
+S9. Ans.(a)  
+Sol. Required percentage = 
+159
+79 × 100 = 201.26% = 201% (approx.)  
+ 
+S10. Ans.(b)  
+Sol. Required answer (79 − 9) ×
+159
+3  
+= 70 × 53 
+= 3710 
+ 
+Solutions (11-15): 
+Total lectures = 250  
+For A,  
+Total Lectures taken = 16% of 250 = 40 (from pie)  
+Physics lectures taken = 20% of 40 = 8 (from table) 
+Chemistry lectures taken = 80% of 40 = 32  
+For B,  
+Total Lectures taken = 20% of 250 = 50 (from pie)  
+Physics lectures taken = 32 (from table) 
+Chemistry lectures taken = 50 – 32 = 18  
+
+ 
+ 
+9 
+ 
+                   
+ 
+For C,  
+Total Lectures taken = 40% of 250 = 100 (from pie)  
+Let the chemistry lectures taken = x 
+Physics lectures taken = x+20 
+x+x+20 = 100  
+2x = 80  
+40 = x = Chemistry lectures taken 
+Physic = 60  
+For D,  
+Total Lectures taken = 24% of 250 = 60 (from pie)  
+Physics : Chemistry lectures = 5m:7m 
+12m = 60  
+5 = m  
+Physics lectures taken = 5m = 25 
+Chemistry lectures taken = 7m = 35  
+Teachers Total Physics lectures Chemistry lectures 
+A 40 8 32 
+B 50 32 18 
+C 100 60 40 
+D 60 25 35 
+ 
+S11. Ans.(a) 
+Sol. Required answer = 
+18
+25 × 100 = 72% 
+ 
+S12. Ans.(b) 
+Sol. Required ratio = 8+32:40 = 1:1 
+ 
+S13. Ans.(d) 
+Sol. Lectures taken by F = 80% of (150) = 120 
+physics lecture taken by A: F = 1:10 
+physics lecture taken by F = 80 
+chemistry lectures taken by F = 120 – 80 = 40  
+ 
+S14. Ans.(a) 
+Sol. Required answer =(32-18)+(40+35) = 14 + 75 = 89 
+ 
+S15. Ans.(a) 
+Sol. Organic chemistry lecture = 25% of 32 = 8  
+physical chemistry lectures = 
+5
+2 × 8 = 20 
+inorganic chemistry lecture = 32 – 8 – 20 = 4  
+required answer =25 – 4 = 21  
+ 

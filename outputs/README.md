@@ -10,8 +10,14 @@ Features:
 
 - Unlimited fresh Vedic Math and banking/government exam question sets
 - Topic selection for arithmetic, BODMAS, fractions, decimals, powers, squares, roots, cubes, and mixed practice
-- IBPS Clerk topics including quadratic equations, ratio, percentage, profit and loss, interest, averages and ages, alligation, time and work, speed and distance, partnership, probability, permutations, boats, pipes, and mensuration
+- IBPS Clerk Prep topics including quadratic equations, ratio, percentage, profit and loss, interest, averages and ages, alligation, time and work, speed and distance, partnership, probability, permutations, boats, pipes, and mensuration
 - Data interpretation practice with mixed, caselet, arithmetic, missing, tabular, line graph, and bar graph datasets
+- PDF Pattern Drill questions modeled on the analyzed IBPS PDFs without copying full paper questions
+- Local login/profile with target exam and countdown
+- Saved activity and progress for the logged-in local user
+- Hidden calculator available from the top bar
+- Pause/resume timer during a quiz
+- Average time per question on the result screen
 - Easy, medium, and hard difficulty levels
 - Custom test size from 1 to 200 questions
 - Persistent in-progress quiz

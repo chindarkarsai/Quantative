@@ -1,0 +1,196 @@
+ 
+ 
+1 
+ 
+                   
+ 
+IBPS Clerk Mains Memory Based Reasoning Section - 29 Nov 2025 Shift 1  
+ 
+Directions (1-5): Read the given information carefully and answer the related questions: 
+Six persons A, B, C, D, E and F sit in a row (equidistant from each other) where some persons face north 
+and some persons face south. Number of persons facing south is more than the number of persons 
+facing north.  They also like different colors i.e., green, yellow, red, black, white and pink. The 
+information of persons and colors is not used in the same manner as given.  
+A sits second from one of the extreme ends. One person sits between A and the one who likes green.  B 
+is an immediate neighbor of the one who likes green.  C sits immediate left of B.  C does not like green.  
+The one who likes yellow sits third to the left of the one who likes red. Two persons sit between D and 
+the one who likes yellow. The one who likes black and the one who likes white, sits immediate left of 
+each other. The one who sits second to the right of the one who likes white, face north. F does not like 
+black. 
+ 
+Q1. What is the position of B with respect to the one who likes red? 
+(a) Fourth to the right 
+(b) Second to the left 
+(c) Immediate left 
+(d) Second to the right 
+(e) Immediate right 
+ 
+Q2. Four of the following five are similar in a certain way and form a group. Who among the 
+following is not related to the group? 
+(a) C 
+(b) E 
+(c) The one who likes green 
+(d) The one who likes pink 
+(e) D 
+ 
+Q3. Which of the following statement is correct? 
+(a) F sits adjacent to the one who likes yellow 
+(b) The one who likes pink face north 
+(c) One person sits between E and D 
+(d) All the statements are not correct 
+(e) A sits immediate right of the one who likes black 
+ 
+Q4. How many persons sit to the left of F? 
+(a) None 
+(b) One 
+(c) Four  
+(d) Three 
+(e) Two 
+
+ 
+ 
+2 
+ 
+                   
+ 
+ 
+Q5. Which of the following pair is correctly matched? 
+(a) B - pink 
+(b) C - red 
+(c) A - black 
+(d) D - white 
+(e) C – green 
+ 
+Directions (6-8): The question below consists of two statements numbered I and II given below 
+it. You have to decide whether the data provided in the statement is sufficient to answer the 
+question. 
+ 
+Q6. Six persons A, B, C, D, E, F - sit around a circular shaped table facing inside, but not in same 
+order as given. Who among the following sits immediate left of D? 
+Statement I: Two persons sit between A and B. C sits immediate right of B. D does not sit adjacent to A 
+and E.  
+Statement II: One person sits between E and B. A sits third to the left of E. C sits second to the right of 
+F but C does not sit adjacent to B.  
+(a) Data given in both statements I and II together are sufficient to answer. 
+(b) Data given in statement I alone is sufficient to answer. 
+(c) Data given in either statement I or statement II alone is sufficient to answer.  
+(d) Data given in both statements I and II even together are not sufficient to answer. 
+(e) Data given in statement II alone is sufficient to answer. 
+ 
+Q7. Six persons K, L, M, N, O, P – are designated in a company on different designations – AM, GM, 
+AGM, SM, Manager and Executive. The designations are given in decreasing order of seniority 
+such that AM is the seniormost designation and Executive is the junio r most designation. Who 
+among the given person is designated as GM? 
+Statement I: N is designated three persons senior to K. One person is designated between N and M. P is 
+designated senior to O. 
+Statement II: P is designated immediate junior to N. O is designated junior to SM. More than one person 
+is designated between O and L.  
+(a) Data given in both statements I and II together are sufficient to answer. 
+(b) Data given in statement I alone is sufficient to answer. 
+(c) Data given in either statement I or statement II alone is sufficient to answer.  
+(d) Data given in both statements I and II even together are not sufficient to answer. 
+(e) Data given in statement II alone is sufficient to answer. 
+ 
+Q8. Six persons A, B, C, D, E, F – live on different floors of a six-floor building where ground floor 
+is numbered as 1, just above it is 2 and so on till the topmost floor is numbered as 6. Who live s 
+immediate below F’s floor? 
+Statement I: C lives above floor 3. One floor gap is between C and E. B lives on even numbered floor 
+below A. D and E do not live on adjacent floors.  
+Statement II: B lives on odd numbered floor. Two persons live between B and D. C’s floor is immediately 
+above D’s floor. E lives two floor above F.  
+ 
+ 
+3 
+ 
+                   
+ 
+(a) Data given in both statements I and II together are sufficient to answer. 
+(b) Data given in statement II alone is sufficient to answer. 
+(c) Data given in either statement I or statement II alone is sufficient to answer.  
+(d) Data given in both statements I and II even together are not sufficient to answer. 
+(e) Data given in statement I alone is sufficient to answer. 
+ 
+Q9. A is brother-in-law of B. B is son of C. D is husband of C. E is only daughter-in-law of D but E is 
+not wife of A. F is aunt of E’s daughter G. H is son of F . Now, find how C is related to H’s cousin? 
+(a) Mother 
+(b) Father 
+(c) Sister-in-law 
+(d) Aunt 
+(e) Grandmother 
+ 
+Q10. Statement: An FMCG company A, has announced that from next month, it will introduce a weekly 
+quality-check audit at all its packaging units due to a recent increase in customer complaints regarding 
+damaged products. 
+Inferences: 
+I. Company A wants to ensure that damaged products do not reach customers. 
+II. The complaints received by Company A were caused only by issues in packaging. 
+III. Before this announcement, Company A did not have any weekly audit system. 
+(a) Only inference I follows 
+(b) Only inference II follows 
+(c) Only inference III follows 
+(d) Both I and III follow 
+(e) None of the inferences follow 
+ 
+Solutions 
+ 
+Solutions (1-5): 
+ 
+ 
+S1. Ans.(b) 
+S2. Ans.(c) 
+S3. Ans.(c) 
+S4. Ans.(d) 
+S5. Ans.(a) 
+
+ 
+ 
+4 
+ 
+                   
+ 
+ 
+S6. Ans.(c) 
+Sol. From I – F sits immediate left of D. 
+ 
+From II – C sits immediate left of D. 
+ 
+ 
+S7. Ans.(d) 
+Sol. From both I and II even together – a definite answer can not be determined.  
+Designations Persons Persons 
+AM L M 
+GM N L 
+AGM P N 
+SM M P 
+Manager K O 
+Executive O K 
+ 
+S8. Ans.(b) 
+Sol. From II – C lives immediate below F’s floor.  
+Floors Persons 
+6 E 
+5 B 
+4 F 
+3 C 
+2 D 
+1 A 
+
+ 
+ 
+5 
+ 
+                   
+ 
+ 
+S9. Ans.(e) 
+Sol. H’s cousin is G; C is grandmother of G 
+ 
+ 
+S10. Ans.(a) 
+Sol. Only Inference I follows  because the company starting weekly quality audits due to increased 
+complaints clearly indicates its intention to reduce damaged products reaching customers.  
+Inference II does not follow  because the statement never says packaging is the only cause of 
+complaints.  
+Inference III also does not follow as the statement does not confirm that weekly audits never existed 
+earlier; it only states they will be introduced from next month. 
+ 
