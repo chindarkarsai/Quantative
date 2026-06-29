@@ -1304,132 +1304,161 @@ function renderDashboard() {
   stopTimer();
   screen = "dashboard";
   const stats = calculateStats();
-  const resume = activeQuiz?.status === "active";
   const user = getCurrentUser();
   const profileStats = userStats(user);
   const remainingDays = daysUntil(user?.examDate);
-  const profileCard = user
-    ? `
-      <div class="profile-mini">
-        <span class="countdown-chip">${remainingDays === null ? "Exam date not set" : remainingDays >= 0 ? `${remainingDays} days left` : "Exam date passed"}</span>
-        <strong>${escapeHtml(user.examName)}</strong>
-        <span>${escapeHtml(user.name)} &bull; ${profileStats.completed} tests &bull; ${profileStats.totalQuestions} questions</span>
-        <small>Average score ${profileStats.averageScore}% &bull; Avg/question ${formatTime(profileStats.averageSeconds)}</small>
-      </div>
-    `
-    : `
-      <div class="profile-mini">
-        <span class="countdown-chip">Login to track</span>
-        <strong>Set your exam target</strong>
-        <span>Save test activity, progress and countdown locally.</span>
-      </div>
-    `;
+  const recent = getHistory().filter((item) => item.status === "completed").slice(0, 4);
 
   app.innerHTML = `
-    <section class="dashboard">
-      <article class="hero-card">
-        <span class="eyebrow">Unlimited exam calculation practice</span>
-        <h1>Make numbers your <em>strength.</em></h1>
-        <p class="hero-copy">
-          Fresh Vedic Math, mental calculation, simplification and banking-exam questions
-          every time you start a quiz. No fixed question bank.
-        </p>
-        <div class="stats-row">
-          <div class="stat"><strong>${stats.streak}</strong><span>Day streak</span></div>
-          <div class="stat"><strong>${stats.completed}</strong><span>Tests finished</span></div>
-          <div class="stat"><strong>${stats.average}%</strong><span>Average score</span></div>
-        </div>
-        ${profileCard}
-      </article>
+    <section class="page-shell">
+      <div class="dashboard-new">
+        <article class="dashboard-hero">
+          <span class="eyebrow">Unlimited practice, real progress</span>
+          <h1>Make numbers your <em>strength.</em></h1>
+          <p>Fresh calculation drills and PDF-informed IBPS Clerk practice every time you start. Build speed, accuracy and exam confidence.</p>
+          <div class="hero-actions">
+            <button class="accent-button" id="startPracticeButton" type="button">Start Practice &rarr;</button>
+            <button class="ghost-on-dark" id="ibpsPracticeButton" type="button">IBPS Clerk Prep</button>
+            ${activeQuiz?.status === "active" ? '<button class="ghost-on-dark" id="resumeQuizButton" type="button">Resume Quiz</button>' : ""}
+          </div>
+        </article>
+        <aside class="dashboard-side">
+          <article class="panel-card">
+            <span class="eyebrow">Exam countdown</span>
+            <h2>${user ? escapeHtml(user.examName) : "Set your exam target"}</h2>
+            <strong class="countdown-large">${remainingDays === null ? "--" : Math.max(0, remainingDays)}</strong>
+            <span>${remainingDays === null ? "Login to start countdown" : "days left"}</span>
+            <button class="secondary-button" id="dashboardProfileButton" type="button">${user ? "View profile" : "Create profile"}</button>
+          </article>
+          <article class="panel-card">
+            <span class="eyebrow">Today's goal</span>
+            <h2>${Math.min(profileStats.totalQuestions, 10)} / 10 questions</h2>
+            <div class="progress-track"><div class="progress-bar" style="width:${Math.min(100, profileStats.totalQuestions * 10)}%"></div></div>
+            <small>Keep the daily rhythm going.</small>
+          </article>
+        </aside>
+      </div>
 
-      <aside class="setup-card">
-        <span class="eyebrow">Build your test</span>
-        <h2>Choose your practice</h2>
+      <div class="dashboard-stats">
+        <div class="metric-card"><strong>${stats.streak}</strong><span>Day streak</span></div>
+        <div class="metric-card"><strong>${stats.completed}</strong><span>Tests finished</span></div>
+        <div class="metric-card"><strong>${stats.average}%</strong><span>Average score</span></div>
+        <div class="metric-card"><strong>${formatTime(profileStats.averageSeconds)}</strong><span>Avg/question</span></div>
+      </div>
 
-        <span class="field-label">Exam mode</span>
-        <div class="mode-grid">
-          <label class="choice-card">
-            <input type="radio" name="mode" value="quick" ${selectedSetup.mode === "quick" ? "checked" : ""}>
-            <span class="choice-icon">+/-</span>
-            <span><strong>Vedic and Mental Maths</strong><small>Calculation shortcuts and speed practice</small></span>
-          </label>
-          <label class="choice-card">
-            <input type="radio" name="mode" value="banking" ${selectedSetup.mode === "banking" ? "checked" : ""}>
-            <span class="choice-icon">%</span>
-            <span><strong>IBPS Clerk Prep</strong><small>Prelims and mains quantitative aptitude with DI</small></span>
-          </label>
-        </div>
-
-        <label>
-          <span class="field-label">Question topic</span>
-          <select id="topicSelect">
-            <optgroup label="Core Calculation">
-              ${CORE_TOPIC_KEYS.map((value) => `
-                <option value="${value}" ${selectedSetup.topic === value ? "selected" : ""}>${TOPICS[value]}</option>
-              `).join("")}
-            </optgroup>
-            <optgroup label="IBPS Clerk Quantitative Aptitude">
-              ${IBPS_TOPIC_KEYS.slice(0, IBPS_TOPIC_KEYS.indexOf("dataAnalysis")).map((value) => `
-                <option value="${value}" ${selectedSetup.topic === value ? "selected" : ""}>${TOPICS[value]}</option>
-              `).join("")}
-            </optgroup>
-            <optgroup label="Data Interpretation and Analysis">
-              ${IBPS_TOPIC_KEYS.slice(IBPS_TOPIC_KEYS.indexOf("dataAnalysis")).map((value) => `
-                <option value="${value}" ${selectedSetup.topic === value ? "selected" : ""}>${TOPICS[value]}</option>
-              `).join("")}
-            </optgroup>
-          </select>
-        </label>
-
-        <div class="select-row">
-          <label>
-            <span class="field-label">Difficulty</span>
-            <select id="difficultySelect">
-              <option value="easy" ${selectedSetup.difficulty === "easy" ? "selected" : ""}>Easy</option>
-              <option value="medium" ${selectedSetup.difficulty === "medium" ? "selected" : ""}>Medium</option>
-              <option value="hard" ${selectedSetup.difficulty === "hard" ? "selected" : ""}>Hard</option>
-            </select>
-          </label>
-          <label>
-            <span class="field-label">Question count</span>
-            <input id="countInput" type="number" min="1" max="200" step="1" value="${selectedSetup.count}" inputmode="numeric">
-          </label>
-        </div>
-        <span class="input-hint">Choose any number from 1 to 200. Start another quiz anytime for a fresh set.</span>
-
-        <button class="primary-button" id="startButton" type="button">
-          <span>${resume ? "Resume current quiz" : "Start fresh quiz"}</span>
-          <span aria-hidden="true">&rarr;</span>
-        </button>
-        ${resume ? '<button class="text-button danger" id="discardButton" type="button">Discard it and create a new quiz</button>' : ""}
-        <p class="setup-note">Completed tests, scores and answer explanations are saved in History on this device.</p>
-      </aside>
+      <div class="content-grid">
+        <article class="panel-card">
+          <div class="page-head"><div><span class="eyebrow">Recent activity</span><h2>Your latest tests</h2></div><button class="text-button" id="viewHistoryButton" type="button">View all &rarr;</button></div>
+          <div class="activity-list">
+            ${recent.length ? recent.map((item) => `
+              <div class="activity-row"><strong>${topicName(item.topic)}</strong><span>${item.percent}%</span><small>${new Date(item.completedAt).toLocaleDateString()}</small></div>
+            `).join("") : '<div class="empty-state"><strong>No tests yet</strong>Start your first quiz to build progress.</div>'}
+          </div>
+        </article>
+        <article class="panel-card">
+          <span class="eyebrow">Quick topics</span>
+          <h2>Jump back in</h2>
+          <div class="topic-filter-row" style="margin-top:18px">
+            ${["simplification", "percentage", "profitLoss", "timeWork", "mixedDI", "pdfPattern"].map((topic) => `<button class="filter-chip quick-topic" data-topic="${topic}" type="button">${TOPICS[topic]}</button>`).join("")}
+          </div>
+        </article>
+      </div>
     </section>
   `;
+  document.querySelector("#startPracticeButton").addEventListener("click", () => { selectedSetup.mode = "quick"; renderTopicSelection(); });
+  document.querySelector("#ibpsPracticeButton").addEventListener("click", () => { selectedSetup.mode = "banking"; renderTopicSelection(); });
+  document.querySelector("#resumeQuizButton")?.addEventListener("click", () => { currentQuestion = activeQuiz.currentQuestion || 0; renderQuiz(); });
+  document.querySelector("#dashboardProfileButton").addEventListener("click", renderProfilePage);
+  document.querySelector("#viewHistoryButton").addEventListener("click", renderHistoryPage);
+  document.querySelectorAll(".quick-topic").forEach((button) => button.addEventListener("click", () => {
+    selectedSetup.mode = "banking";
+    selectedSetup.topic = button.dataset.topic;
+    renderSettingsPage();
+  }));
+  app.focus();
+}
 
-  document.querySelectorAll('input[name="mode"]').forEach((input) => {
-    input.addEventListener("change", (event) => {
-      selectedSetup.mode = event.target.value;
+function renderTopicSelection() {
+  stopTimer();
+  screen = "topics";
+  const entries = Object.entries(TOPICS);
+  app.innerHTML = `
+    <section class="page-shell">
+      <button class="back-link" id="topicsBackButton" type="button">&larr; Home</button>
+      <div class="page-head"><div><span class="eyebrow">Step 1</span><h1>Choose a topic</h1><p>Select one topic or choose a mixed quiz.</p></div></div>
+      <input class="topic-search" id="topicSearch" type="search" placeholder="Search topics...">
+      <div class="topic-filter-row">
+        <button class="filter-chip active" data-filter="all" type="button">All</button>
+        <button class="filter-chip" data-filter="core" type="button">Mental Maths</button>
+        <button class="filter-chip" data-filter="ibps" type="button">IBPS Arithmetic</button>
+        <button class="filter-chip" data-filter="di" type="button">Data Interpretation</button>
+      </div>
+      <div class="topic-card-grid" id="topicGrid">
+        ${entries.map(([key, label], index) => {
+          const group = CORE_TOPIC_KEYS.includes(key) ? "core" : IBPS_TOPIC_KEYS.indexOf(key) >= IBPS_TOPIC_KEYS.indexOf("dataAnalysis") ? "di" : "ibps";
+          return `<button class="topic-tile ${selectedSetup.topic === key ? "selected" : ""}" data-topic="${key}" data-group="${group}" type="button"><span class="topic-tile-icon">${String(index + 1).padStart(2, "0")}</span><strong>${escapeHtml(label)}</strong></button>`;
+        }).join("")}
+      </div>
+    </section>`;
+  const filterTopics = () => {
+    const query = document.querySelector("#topicSearch").value.trim().toLowerCase();
+    const activeFilter = document.querySelector(".filter-chip.active")?.dataset.filter || "all";
+    document.querySelectorAll(".topic-tile").forEach((tile) => {
+      const matchesQuery = tile.textContent.toLowerCase().includes(query);
+      const matchesFilter = activeFilter === "all" || tile.dataset.group === activeFilter;
+      tile.style.display = matchesQuery && matchesFilter ? "grid" : "none";
     });
-  });
-  document.querySelector("#topicSelect").addEventListener("change", (event) => {
-    selectedSetup.topic = event.target.value;
-  });
-  document.querySelector("#difficultySelect").addEventListener("change", (event) => {
-    selectedSetup.difficulty = event.target.value;
-  });
-  document.querySelector("#countInput").addEventListener("input", (event) => {
-    selectedSetup.count = Number(event.target.value);
-  });
-  document.querySelector("#startButton").addEventListener("click", () => {
-    if (resume) {
-      currentQuestion = activeQuiz.currentQuestion || 0;
-      renderQuiz();
-    } else {
-      startNewQuiz();
-    }
-  });
-  document.querySelector("#discardButton")?.addEventListener("click", () => startNewQuiz(true));
+  };
+  document.querySelector("#topicsBackButton").addEventListener("click", renderDashboard);
+  document.querySelector("#topicSearch").addEventListener("input", filterTopics);
+  document.querySelectorAll(".filter-chip[data-filter]").forEach((button) => button.addEventListener("click", () => {
+    document.querySelectorAll(".filter-chip[data-filter]").forEach((item) => item.classList.remove("active"));
+    button.classList.add("active");
+    filterTopics();
+  }));
+  document.querySelectorAll(".topic-tile").forEach((button) => button.addEventListener("click", () => {
+    selectedSetup.topic = button.dataset.topic;
+    if (button.dataset.group !== "core") selectedSetup.mode = "banking";
+    renderSettingsPage();
+  }));
+  app.focus();
+}
+
+function renderSettingsPage() {
+  stopTimer();
+  screen = "settings";
+  app.innerHTML = `
+    <section class="page-shell">
+      <button class="back-link" id="settingsBackButton" type="button">&larr; Topics</button>
+      <div class="page-head"><div><span class="eyebrow">Step 2</span><h1>Test settings</h1><p>Customize your ${escapeHtml(topicName(selectedSetup.topic))} quiz.</p></div></div>
+      <div class="settings-layout">
+        <article class="settings-card">
+          <span class="field-label">Difficulty level</span>
+          <div class="difficulty-grid">
+            ${[["easy","Easy","For beginners"],["medium","Medium","Balanced"],["hard","Hard","Exam level"]].map(([value,label,note]) => `<button class="difficulty-card ${selectedSetup.difficulty === value ? "selected" : ""}" data-difficulty="${value}" type="button"><strong>${label}</strong><small>${note}</small></button>`).join("")}
+          </div>
+          <label><span class="field-label">Number of questions</span><input id="settingsCountInput" type="number" min="1" max="200" value="${selectedSetup.count}"></label>
+          <span class="input-hint">Choose any number from 1 to 200.</span>
+          <div class="page-actions"><button class="primary-button" id="settingsStartButton" type="button">Start Quiz &rarr;</button></div>
+        </article>
+        <aside class="panel-card settings-preview">
+          <span class="eyebrow">Quiz preview</span>
+          <h2>${escapeHtml(topicName(selectedSetup.topic))}</h2>
+          <div class="metric-card"><strong>${selectedSetup.count}</strong><span>Questions</span></div>
+          <div class="metric-card"><strong>${escapeHtml(selectedSetup.difficulty)}</strong><span>Difficulty</span></div>
+          <div class="metric-card"><strong>${modeName(selectedSetup.mode)}</strong><span>Mode</span></div>
+          ${activeQuiz?.status === "active" ? '<button class="text-button danger" id="replaceQuizButton" type="button">Replace current quiz</button>' : ""}
+        </aside>
+      </div>
+    </section>`;
+  document.querySelector("#settingsBackButton").addEventListener("click", renderTopicSelection);
+  document.querySelectorAll(".difficulty-card").forEach((button) => button.addEventListener("click", () => {
+    selectedSetup.difficulty = button.dataset.difficulty;
+    renderSettingsPage();
+  }));
+  document.querySelector("#settingsCountInput").addEventListener("input", (event) => { selectedSetup.count = Number(event.target.value); });
+  document.querySelector("#settingsStartButton").addEventListener("click", () => startNewQuiz(Boolean(activeQuiz)));
+  document.querySelector("#replaceQuizButton")?.addEventListener("click", () => startNewQuiz(true));
   app.focus();
 }
 
@@ -1455,7 +1484,7 @@ function startNewQuiz(replace = false) {
   const rawCount = Number(selectedSetup.count);
   if (!Number.isInteger(rawCount) || rawCount < 1 || rawCount > 200) {
     showToast("Enter a question count from 1 to 200.");
-    document.querySelector("#countInput")?.focus();
+    document.querySelector("#settingsCountInput")?.focus();
     return;
   }
   selectedSetup.count = clamp(rawCount, 1, 200);
@@ -1685,8 +1714,131 @@ function renderResult(result) {
     </section>
   `;
 
-  document.querySelector("#anotherQuizButton").addEventListener("click", startNewQuiz);
+  document.querySelector("#anotherQuizButton").addEventListener("click", renderTopicSelection);
   document.querySelector("#dashboardButton").addEventListener("click", renderDashboard);
+  app.focus();
+}
+
+function renderHistoryPage() {
+  stopTimer();
+  screen = "history";
+  const history = getHistory();
+  app.innerHTML = `
+    <section class="page-shell">
+      <button class="back-link" id="historyPageBack" type="button">&larr; Home</button>
+      <div class="page-head"><div><span class="eyebrow">Activity</span><h1>Quiz history</h1><p>Every completed and incomplete attempt saved on this device.</p></div></div>
+      <article class="panel-card">
+        <div class="history-page-list">
+          ${history.length ? history.map((item) => `
+            <div class="history-item">
+              <div><strong>${modeName(item.mode)} &bull; ${topicName(item.topic)}</strong><small>${new Date(item.completedAt).toLocaleString()} &bull; ${escapeHtml(item.difficulty)} &bull; ${item.status === "completed" ? `${item.correct}/${item.count} correct` : `${item.answered}/${item.count} answered`}</small></div>
+              <div class="history-score ${item.status === "incomplete" ? "incomplete" : ""}">${item.status === "completed" ? `${item.percent}%` : "Incomplete"}</div>
+            </div>`).join("") : '<div class="empty-state"><strong>No quiz history</strong>Complete a test and it will appear here.</div>'}
+        </div>
+        ${history.length ? '<div class="page-actions"><button class="text-button danger" id="historyPageClear" type="button">Clear history</button></div>' : ""}
+      </article>
+    </section>`;
+  document.querySelector("#historyPageBack").addEventListener("click", renderDashboard);
+  document.querySelector("#historyPageClear")?.addEventListener("click", () => {
+    if (window.confirm("Clear all saved quiz history on this device?")) {
+      save(STORAGE_KEYS.history, []);
+      updateBadge();
+      renderHistoryPage();
+    }
+  });
+  app.focus();
+}
+
+function renderStatisticsPage() {
+  stopTimer();
+  screen = "statistics";
+  const completed = getHistory().filter((item) => item.status === "completed");
+  const totalQuestions = completed.reduce((sum, item) => sum + item.count, 0);
+  const correct = completed.reduce((sum, item) => sum + item.correct, 0);
+  const totalSeconds = completed.reduce((sum, item) => sum + item.elapsedSeconds, 0);
+  const scores = completed.slice(0, 7).reverse();
+  const topicStats = {};
+  completed.forEach((item) => {
+    const key = topicName(item.topic);
+    if (!topicStats[key]) topicStats[key] = { correct: 0, count: 0 };
+    topicStats[key].correct += item.correct;
+    topicStats[key].count += item.count;
+  });
+  app.innerHTML = `
+    <section class="page-shell">
+      <button class="back-link" id="statsBackButton" type="button">&larr; Home</button>
+      <div class="page-head"><div><span class="eyebrow">Analytics</span><h1>Your progress</h1><p>Accuracy, speed and topic performance from saved tests.</p></div></div>
+      <div class="metric-grid">
+        <div class="metric-card"><strong>${completed.length}</strong><span>Tests</span></div>
+        <div class="metric-card"><strong>${totalQuestions ? Math.round(correct / totalQuestions * 100) : 0}%</strong><span>Accuracy</span></div>
+        <div class="metric-card"><strong>${totalQuestions}</strong><span>Questions attempted</span></div>
+        <div class="metric-card"><strong>${formatTime(totalQuestions ? Math.round(totalSeconds / totalQuestions) : 0)}</strong><span>Avg/question</span></div>
+      </div>
+      <div class="content-grid">
+        <article class="panel-card"><span class="eyebrow">Score trend</span><h2>Last seven tests</h2><div class="score-trend">${scores.length ? scores.map((item) => `<div class="trend-column"><div class="trend-bar" style="height:${Math.max(6,item.percent)}%"></div><small>${item.percent}%</small></div>`).join("") : '<div class="empty-state"><strong>No data yet</strong>Complete a quiz to see your trend.</div>'}</div></article>
+        <article class="panel-card"><span class="eyebrow">Topic performance</span><h2>Accuracy by topic</h2><div class="activity-list">${Object.entries(topicStats).slice(0,8).map(([name,data]) => `<div><div class="activity-row"><strong>${escapeHtml(name)}</strong><span>${Math.round(data.correct/data.count*100)}%</span></div><div class="progress-track"><div class="progress-bar" style="width:${Math.round(data.correct/data.count*100)}%"></div></div></div>`).join("") || '<div class="empty-state">No topic data yet.</div>'}</div></article>
+      </div>
+    </section>`;
+  document.querySelector("#statsBackButton").addEventListener("click", renderDashboard);
+  app.focus();
+}
+
+function renderProfilePage() {
+  stopTimer();
+  screen = "profile";
+  const user = getCurrentUser();
+  if (!user) {
+    showProfile();
+    return;
+  }
+  const stats = userStats(user);
+  const remaining = daysUntil(user.examDate);
+  app.innerHTML = `
+    <section class="page-shell">
+      <button class="back-link" id="profilePageBack" type="button">&larr; Home</button>
+      <div class="page-head"><div><span class="eyebrow">Account</span><h1>Your profile</h1><p>Exam target, countdown and overall progress stored locally.</p></div></div>
+      <div class="profile-page-grid">
+        <article class="panel-card">
+          <div class="profile-avatar">${escapeHtml(user.name.charAt(0).toUpperCase())}</div>
+          <h2>${escapeHtml(user.name)}</h2>
+          <p>${escapeHtml(user.examName)}</p>
+          <span class="countdown-chip">${remaining === null ? "No exam date" : remaining >= 0 ? `${remaining} days left` : "Exam date passed"}</span>
+          <div class="page-actions"><button class="secondary-button" id="editProfileButton" type="button">Edit profile</button></div>
+        </article>
+        <article class="panel-card">
+          <span class="eyebrow">Overall statistics</span><div class="metric-grid" style="margin-top:16px">
+            <div class="metric-card"><strong>${stats.completed}</strong><span>Tests completed</span></div>
+            <div class="metric-card"><strong>${stats.totalQuestions}</strong><span>Questions attempted</span></div>
+            <div class="metric-card"><strong>${stats.averageScore}%</strong><span>Average score</span></div>
+            <div class="metric-card"><strong>${formatTime(stats.averageSeconds)}</strong><span>Avg/question</span></div>
+          </div>
+        </article>
+      </div>
+    </section>`;
+  document.querySelector("#profilePageBack").addEventListener("click", renderDashboard);
+  document.querySelector("#editProfileButton").addEventListener("click", showProfile);
+  app.focus();
+}
+
+function renderCalculatorPage() {
+  stopTimer();
+  screen = "calculator";
+  app.innerHTML = `
+    <section class="page-shell calculator-page">
+      <button class="back-link" id="calculatorPageBack" type="button">&larr; Home</button>
+      <div class="page-head"><div><span class="eyebrow">Tool</span><h1>Calculator</h1><p>Use it whenever you need to check a calculation.</p></div></div>
+      <article class="panel-card">
+        <input class="calculator-display" id="pageCalculatorDisplay" type="text" inputmode="decimal" placeholder="0">
+        <div class="calculator-grid">
+          ${["7","8","9","/","4","5","6","*","1","2","3","-","0",".","=","+","(",")","back","clear"].map((key) => `<button type="button" data-page-calc="${key}">${key === "*" ? "x" : key === "back" ? "Back" : key === "clear" ? "Clear" : key}</button>`).join("")}
+        </div>
+      </article>
+    </section>`;
+  const display = document.querySelector("#pageCalculatorDisplay");
+  const applyAction = (action) => handleCalculatorInput(action, display);
+  document.querySelector("#calculatorPageBack").addEventListener("click", renderDashboard);
+  document.querySelectorAll("[data-page-calc]").forEach((button) => button.addEventListener("click", () => applyAction(button.dataset.pageCalc)));
+  display.addEventListener("keydown", (event) => { if (event.key === "Enter") { event.preventDefault(); display.value = calculateExpression(display.value); } });
   app.focus();
 }
 
@@ -1762,23 +1914,51 @@ function calculateExpression(expression) {
   }
 }
 
-function handleCalculatorInput(action) {
+function handleCalculatorInput(action, display = calculatorDisplay) {
   if (action === "clear") {
-    calculatorDisplay.value = "";
+    display.value = "";
     return;
   }
   if (action === "back") {
-    calculatorDisplay.value = calculatorDisplay.value.slice(0, -1);
+    display.value = display.value.slice(0, -1);
     return;
   }
   if (action === "=") {
-    calculatorDisplay.value = calculateExpression(calculatorDisplay.value);
+    display.value = calculateExpression(display.value);
     return;
   }
-  calculatorDisplay.value += action;
+  display.value += action;
 }
 
-document.querySelector("#profileButton").addEventListener("click", showProfile);
+function openSideMenu() {
+  document.querySelector("#sideMenu").classList.add("open");
+  document.querySelector("#sidebarBackdrop").classList.remove("hidden");
+  document.querySelectorAll(".side-menu-nav button").forEach((button) => button.classList.toggle("active", button.dataset.page === screen));
+}
+
+function closeSideMenu() {
+  document.querySelector("#sideMenu").classList.remove("open");
+  document.querySelector("#sidebarBackdrop").classList.add("hidden");
+}
+
+function navigateToPage(page) {
+  closeSideMenu();
+  const routes = {
+    dashboard: renderDashboard,
+    topics: renderTopicSelection,
+    history: renderHistoryPage,
+    statistics: renderStatisticsPage,
+    profile: renderProfilePage,
+    calculator: renderCalculatorPage
+  };
+  (routes[page] || renderDashboard)();
+}
+
+document.querySelector("#menuButton").addEventListener("click", openSideMenu);
+document.querySelector("#closeMenuButton").addEventListener("click", closeSideMenu);
+document.querySelector("#sidebarBackdrop").addEventListener("click", closeSideMenu);
+document.querySelectorAll(".side-menu-nav button").forEach((button) => button.addEventListener("click", () => navigateToPage(button.dataset.page)));
+document.querySelector("#profileButton").addEventListener("click", () => getCurrentUser() ? renderProfilePage() : showProfile());
 document.querySelector("#closeProfileButton").addEventListener("click", () => profileDialog.close());
 document.querySelector("#profileForm").addEventListener("submit", saveProfileFromForm);
 document.querySelector("#logoutButton").addEventListener("click", () => {
@@ -1786,7 +1966,7 @@ document.querySelector("#logoutButton").addEventListener("click", () => {
   logoutUser();
   showToast("Logged out from this browser.");
 });
-document.querySelector("#historyButton").addEventListener("click", showHistory);
+document.querySelector("#historyButton").addEventListener("click", renderHistoryPage);
 document.querySelector("#closeHistoryButton").addEventListener("click", () => historyDialog.close());
 document.querySelector("#doneHistoryButton").addEventListener("click", () => historyDialog.close());
 document.querySelector("#clearHistoryButton").addEventListener("click", () => {

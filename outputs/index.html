@@ -18,6 +18,10 @@
         </span>
       </button>
       <nav class="top-actions" aria-label="Main navigation">
+        <button class="icon-button" id="menuButton" type="button">
+          <span aria-hidden="true">&#9776;</span>
+          <span>Menu</span>
+        </button>
         <button class="icon-button" id="profileButton" type="button">
           <span aria-hidden="true">&#9786;</span>
           <span id="profileButtonText">Login</span>
@@ -82,6 +86,26 @@
       </div>
     </form>
   </dialog>
+
+  <div class="sidebar-backdrop hidden" id="sidebarBackdrop"></div>
+  <aside class="side-menu" id="sideMenu" aria-label="App menu">
+    <div class="side-menu-head">
+      <div class="side-brand"><span class="brand-mark">Q</span><strong>Quantivate</strong></div>
+      <button class="close-button side-close" id="closeMenuButton" type="button" aria-label="Close menu">&times;</button>
+    </div>
+    <nav class="side-menu-nav">
+      <button type="button" data-page="dashboard"><span>01</span> Home</button>
+      <button type="button" data-page="topics"><span>02</span> Start Quiz</button>
+      <button type="button" data-page="topics"><span>03</span> Topics</button>
+      <button type="button" data-page="history"><span>04</span> History</button>
+      <button type="button" data-page="statistics"><span>05</span> Statistics</button>
+      <button type="button" data-page="profile"><span>06</span> Profile</button>
+      <button type="button" data-page="calculator"><span>07</span> Calculator</button>
+    </nav>
+    <div class="side-menu-footer">
+      <small>Daily practice, real progress.</small>
+    </div>
+  </aside>
 
   <div class="calculator-panel hidden" id="calculatorPanel" aria-label="Calculator">
     <div class="calculator-head">
